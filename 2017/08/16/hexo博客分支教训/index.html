@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="express,session," />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -94,18 +94,21 @@
 
 
 
-<meta name="description" content="水满则溢，月盈则亏">
-<meta name="keywords" content="express,session">
+<meta name="description" content="最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="express-session介绍">
-<meta property="og:url" content="http://wlfsmile.win/2017/08/15/express-session介绍/index.html">
+<meta property="og:title" content="hexo博客分支教训">
+<meta property="og:url" content="http://wlfsmile.win/2017/08/16/hexo博客分支教训/index.html">
 <meta property="og:site_name" content="wlfsmile的博客">
-<meta property="og:description" content="水满则溢，月盈则亏">
+<meta property="og:description" content="最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-16T05:13:00.196Z">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-16/1.png">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-16/2.JPG">
+<meta property="og:updated_time" content="2017-08-16T05:47:24.841Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="express-session介绍">
-<meta name="twitter:description" content="水满则溢，月盈则亏">
+<meta name="twitter:title" content="hexo博客分支教训">
+<meta name="twitter:description" content="最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。">
+<meta name="twitter:image" content="http://wlfsmile.win/img/2017-8-16/1.png">
 
 
 
@@ -134,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://wlfsmile.win/2017/08/15/express-session介绍/"/>
+  <link rel="canonical" href="http://wlfsmile.win/2017/08/16/hexo博客分支教训/"/>
 
 
 
 
 
-  <title>express-session介绍 | wlfsmile的博客</title>
+  <title>hexo博客分支教训 | wlfsmile的博客</title>
   
 
 
@@ -280,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/08/15/express-session介绍/">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/08/16/hexo博客分支教训/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wlfsmile">
@@ -297,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">express-session介绍</h1>
+          <h1 class="post-title" itemprop="name headline">hexo博客分支教训</h1>
         
 
         <div class="post-meta">
@@ -309,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T22:15:39+08:00">
-                2017-08-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T13:17:43+08:00">
+                2017-08-16
               </time>
             
 
@@ -332,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node/" itemprop="url" rel="index">
-                    <span itemprop="name">Node</span>
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
                   </a>
                 </span>
 
@@ -369,7 +372,27 @@
       
 
       
-        
+        <p><img src="/img/2017-8-16/1.png" align="center"></p>
+<p>最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。<br><a id="more"></a><br>如果想要进行hexo博客分支备份，推荐<a href="http://www.jianshu.com/p/57b5a384f234" target="_blank" rel="external">Hexo博客备份</a></p>
+<h4 id="先说一下事情起因过程"><a href="#先说一下事情起因过程" class="headerlink" title="先说一下事情起因过程"></a>先说一下事情起因过程</h4><ul>
+<li>我发现当我切换到hexo分支时，本地的目录是master分支里面的东西，而我切换到master分支时，本地目录是hexo分支里面的东西（可能是我记错了，也可能是我一时疏忽大意，没管那么多，没仔细看）</li>
+<li>一不小心把master分支里面的东西传到了hexo分支</li>
+<li>然后把本地分支删除了</li>
+<li>后来索性把远程分支一起删了（就是这样，本地的东西也没了，还好我把博客的md文章全部备份了，不然哭死）</li>
+<li>发现仓库不能用了<br>后来我才知道，进行单独的分支管理，最好本地是有一个单独分支文件夹（反正我是喜欢这样）</li>
+</ul>
+<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><ul>
+<li>再创建一个hexo分支，将hexo设为默认分支</li>
+<li>把之前的博客文件夹弃用</li>
+<li>将github的东西克隆下来（会有博客的基本结构）</li>
+</ul>
+<p><img src="/img/2017-8-16/2.JPG" align="center"></p>
+<ul>
+<li>将之前保留的_config.yml，themes/，source/，scaffolds/，package.json，.gitignore复制过来</li>
+<li>执行<code>npm install</code>和<code>npm install hexo-deployer-git</code>（重要）（一开始我没执行hexo-deployer-git，然后执行hexo d 的时候就会有<code>ERROR Deployer not found: git</code>烦人错误）</li>
+<li></li>
+</ul>
+
       
     </div>
     
@@ -386,9 +409,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/express/" <i class="fa fa-tag"></i> express</a>
-          
-            <a href="/tags/session/" <i class="fa fa-tag"></i> session</a>
+            <a href="/tags/hexo/" <i class="fa fa-tag"></i> hexo</a>
           
         </div>
       
@@ -401,8 +422,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/14/使用Node.js-Express-简易来发服务端实例/" rel="next" title="使用Node.js+Express 简易开发服务端实例">
-                <i class="fa fa-chevron-left"></i> 使用Node.js+Express 简易开发服务端实例
+              <a href="/2017/08/15/express-session介绍/" rel="next" title="express-session介绍">
+                <i class="fa fa-chevron-left"></i> express-session介绍
               </a>
             
           </div>
@@ -410,10 +431,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/16/hexo博客分支教训/" rel="prev" title="hexo博客分支教训">
-                hexo博客分支教训 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -473,8 +490,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/wlf.jpg"
@@ -615,6 +641,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#先说一下事情起因过程"><span class="nav-number">1.</span> <span class="nav-text">先说一下事情起因过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决过程"><span class="nav-number">2.</span> <span class="nav-text">解决过程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
