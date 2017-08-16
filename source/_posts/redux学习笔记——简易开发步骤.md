@@ -1,7 +1,8 @@
 ---
 title: redux学习笔记——简易开发步骤
 date: 2017-07-10 15:18:40
-tags:
+tags: redux
+categories: react
 ---
 这篇文章主要是写我一开始学习redux的开发的步骤，比较适合刚刚入门的小白，不知道怎么开始下手代码,本篇文章以计数器为例。本篇文章参考[Redux学习笔记：Redux简易开发步骤](http://www.cnblogs.com/yinluhui0229/p/6709782.html) 
 github代码地址[react-redux-counter](https://github.com/wlfsmile/Redux/tree/master/counter)
