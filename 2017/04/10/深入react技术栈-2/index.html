@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="react," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="第一章（Raact数据流、React生命周期、React与DOM）React数据流在React中，数据是自项向下单向流动的。即从父组件到子组件。  如果顶层组件初始化props，那么React会向下遍历整棵组件树，重新尝试渲染所有相关的子组件。而state只关心每个组件自己的内部的状态，这些状态只能在组件内改变。">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入react技术栈-2">
+<meta property="og:url" content="http://wlfsmile.win/2017/04/10/深入react技术栈-2/index.html">
+<meta property="og:site_name" content="wlfsmile的博客">
+<meta property="og:description" content="第一章（Raact数据流、React生命周期、React与DOM）React数据流在React中，数据是自项向下单向流动的。即从父组件到子组件。  如果顶层组件初始化props，那么React会向下遍历整棵组件树，重新尝试渲染所有相关的子组件。而state只关心每个组件自己的内部的状态，这些状态只能在组件内改变。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-15T12:51:49.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入react技术栈-2">
+<meta name="twitter:description" content="第一章（Raact数据流、React生命周期、React与DOM）React数据流在React中，数据是自项向下单向流动的。即从父组件到子组件。  如果顶层组件初始化props，那么React会向下遍历整棵组件树，重新尝试渲染所有相关的子组件。而state只关心每个组件自己的内部的状态，这些状态只能在组件内改变。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wlfsmile.win/2017/04/10/深入react技术栈-2/"/>
+
+
+
+
+
+  <title>深入react技术栈-2 | wlfsmile的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/wlfsmile"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wlfsmile的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">水满则溢，月盈则亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/04/10/深入react技术栈-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wlfsmile">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wlf.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wlfsmile的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入react技术栈-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T20:31:30+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="第一章（Raact数据流、React生命周期、React与DOM）"><a href="#第一章（Raact数据流、React生命周期、React与DOM）" class="headerlink" title="第一章（Raact数据流、React生命周期、React与DOM）"></a>第一章（Raact数据流、React生命周期、React与DOM）</h4><h5 id="React数据流"><a href="#React数据流" class="headerlink" title="React数据流"></a>React数据流</h5><p>在React中，数据是自项向下单向流动的。即从父组件到子组件。</p>
+<ul>
+<li>如果顶层组件初始化props，那么React会向下遍历整棵组件树，重新尝试渲染所有相关的子组件。而state只关心每个组件自己的内部的状态，这些状态只能在组件内改变。<a id="more"></a>
+<h6 id="state"><a href="#state" class="headerlink" title="state"></a>state</h6></li>
+<li>当组件内部使用库内置的setState方法时，最大的表现行为就是该组合会尝试重新渲染。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import React,&#123;Component&#125; form &apos;react&apos;;</div><div class="line">class Counter extends Component&#123;</div><div class="line">    constructor(pros)&#123;</div><div class="line">        super(props);</div><div class="line">        this.state = &#123;</div><div class="line">            count:0,</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    handleClick(e)&#123;</div><div class="line">        e.preventDefault();</div><div class="line">        this.setState(&#123;</div><div class="line">            count : this.state.count + 1,</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        renturn(</div><div class="line">            &lt;div&gt;</div><div class="line">                &lt;p&gt;&#123;this.state.count&#125;&lt;/p&gt;</div><div class="line">                &lt;a href=&quot;#&quot; onClick=&#123;this.handleClick&#125;&gt;更新&lt;/a&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上述例子是通过点击“更新”按钮不断的更新内部值。把组件内状态封装在现实中。</p>
+<ul>
+<li>setState 是一个异步方法。一个生命周期内所有的setState方法会合并操作。</li>
+</ul>
+<h6 id="props"><a href="#props" class="headerlink" title="props"></a>props</h6><ul>
+<li>是react用来让组件之间相互联系的一种机制。</li>
+<li>react的单向数据流，主要的流动管道是props。其本身不可变的，组件的props一定来自默认属性或者通过父组件传递而来。</li>
+<li>组件的部分props<ul>
+<li>className：根节点的class。</li>
+<li>classPrefix：class的统一前缀。有助于对样式与交互分离。</li>
+<li>defaultActiveIndex和activeIndex：默认的激活索引。</li>
+<li>onChange：回调函数。一般与activeIndex搭配使用。</li>
+</ul>
+</li>
+<li><p>react为props提供了默认配置，可通过defaultProps静态变量的方式定义。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">static defaultProps =&#123;</div><div class="line">    classPrefix:&apos;&apos;,</div><div class="line">    onChange:()=&gt;&#123;&#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>子组件prop</p>
+<ul>
+<li>在react中有一个重要且内置的prop——children，代表组件的子组件集合。</li>
+<li>React.Children是React官方提供的一系列操作children的方法。提供诸如map、forEach、count等实用函数。</li>
+</ul>
+</li>
+<li>组件props</li>
+<li>用function prop与父组件通信<ul>
+<li>对于state，它的通信集中在组件内部。对于props，它的通信是父组件向子组件的传播。</li>
+</ul>
+</li>
+<li>propType<ul>
+<li>用于规范props的类型与必需的状态。若组件定义了propType，那么在开发环境下，就会对组件的props值的类型作检查。  </li>
+</ul>
+</li>
+</ul>
+<h5 id="React生命周期"><a href="#React生命周期" class="headerlink" title="React生命周期"></a>React生命周期</h5><p> react组件的生命周期分为挂载、渲染和卸载。</p>
+<h6 id="挂载或卸载过程"><a href="#挂载或卸载过程" class="headerlink" title="挂载或卸载过程"></a>挂载或卸载过程</h6><ul>
+<li><p>组件的挂载</p>
+<ul>
+<li>主要做组件状态的初始化<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">import React,&#123;Component,PropTypes&#125; form &apos;react&apos;;</div><div class="line">class App extends Component&#123;</div><div class="line">    static propTypes=&#123;</div><div class="line">        //...</div><div class="line">    &#125;;</div><div class="line">    static defaultProps=&#123;</div><div class="line">        //...</div><div class="line">    &#125;;</div><div class="line">    constructor(props)&#123;</div><div class="line">        super(props);</div><div class="line">        this.state=&#123;</div><div class="line">            //...</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    componentWillMount()&#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">    componentDidMount()&#123;</div><div class="line">    //...</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        return &lt;div&gt;This is a demo.&lt;/div&gt;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>两个生命周期方法</p>
+<ul>
+<li>componentWillMount，在render方法之前执行。（渲染前）</li>
+<li>componentDidMount，在render方法之后执行。（渲染后）</li>
+</ul>
+</li>
+<li>执行setState方法<ul>
+<li>在componentWillMount中，组件会更新state，但组件只渲染一次。无意义的执行</li>
+<li>在componentDidMount中，组件会再次更新，在初始化过程中就渲染了两次。</li>
+</ul>
+</li>
+<li>组件的卸载<ul>
+<li>只有componentWillMount这一个卸载前状态。</li>
+</ul>
+</li>
+</ul>
+<h6 id="数据更新过程"><a href="#数据更新过程" class="headerlink" title="数据更新过程"></a>数据更新过程</h6><ul>
+<li><p>指的是父组件向下传递props或组件自身执行setState方法时发生的一系列更新动作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import React,&#123;Component,PropTypes&#125; from &apos;react&apos;;</div><div class="line">class App extends Component&#123;</div><div class="line">    componentWillReceiveProps(nextProps)&#123;</div><div class="line">        //this.setState(&#123;&#125;)</div><div class="line">    &#125;</div><div class="line">    shouldComponentUpdate(nextProps,nextState)&#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">    componentWillUpdate(nextProps,nextState)&#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">    componentDidUpdate(prevProps,prevState)&#123;</div><div class="line">        //...</div><div class="line">    &#125;</div><div class="line">    render()&#123;</div><div class="line">        return &lt;div&gt;This is a demo.&lt;/div&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>组件自身的state更新，会依次执行shouldComponentUpdate、componentWillUpdate、rebder和componentDidUpdate。</p>
+</li>
+<li>shouldComponentUpdate 接收需要更新的props和state。开发者加入必要的条件判断，当方法返回false，组件不再向下执行生命周期方法。</li>
+<li>componentWillUpdate方法提供需要更新的props和state，代表更新过程中渲染前时刻；componentDidUpdate方法提供更新前的props和state，代表更新过程中渲染后时刻。</li>
+<li>如果组件是由父组件更新props而更新的，那么在shouldComponentUpdate之前会先执行componentWillReceiveProps方法。在此方法中调用setState不会有二次渲染。</li>
+</ul>
+<h5 id="React与DOM"><a href="#React与DOM" class="headerlink" title="React与DOM"></a>React与DOM</h5><ul>
+<li>在组件开实现中，不会用到ReactDOM，只有在顶层组件以及由于React模型所限而不得不操作DOM的时候，才会用。</li>
+</ul>
+<h6 id="ReactDOM"><a href="#ReactDOM" class="headerlink" title="ReactDOM"></a>ReactDOM</h6><ul>
+<li><p>findDOMNode</p>
+<ul>
+<li><p>React提供的获取DOM元素的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">DOMElement findDOMNode(ReactComponent component)</div></pre></td></tr></table></figure>
+</li>
+<li><p>当组件被渲染到DOM中之后，findDOMNode返回该React组件实例相应的DOM节点。它可以用于获取表单的value以及用于DOM的测量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//当前组件加载完时获取当前DOM</div><div class="line">import React,&#123;Component&#125; from &apos;react&apos;;</div><div class="line">import ReactDOM from &apos;react-dom&apos;;</div><div class="line">class App extends Component&#123;</div><div class="line">    componentDidMount()&#123;</div><div class="line">        //this为当前组件实例</div><div class="line">        const dom = ReactDOM.findDOMNode(this);</div><div class="line">    &#125;</div><div class="line">    render()&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>findDOMNode只对已经挂载的组件有效。</p>
+</li>
+</ul>
+</li>
+<li><p>render</p>
+<ul>
+<li><p>用于把React渲染的Virtual DOM渲染到浏览器的DOM当中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ReactComponent render(</div><div class="line">    ReactElement element,</div><div class="line">    DOMElement container,</div><div class="line">    [function callback]</div><div class="line">)</div></pre></td></tr></table></figure>
+</li>
+<li><p>该方法把元素挂载到container中，并返回element实例（refs引用）。如果是无状态组件，render会返回null，当组件装载完毕时，callback就会被调用。</p>
+</li>
+<li>再次更新时，React不会把组件重新渲染，而是用DOM diff算法做局部更新。</li>
+</ul>
+</li>
+</ul>
+<h6 id="ReactDOM的不稳定方法"><a href="#ReactDOM的不稳定方法" class="headerlink" title="ReactDOM的不稳定方法"></a>ReactDOM的不稳定方法</h6><ul>
+<li>有两种不稳定方法</li>
+</ul>
+<h6 id="refs"><a href="#refs" class="headerlink" title="refs"></a>refs</h6><ul>
+<li>组件中特殊的prop，可以附加到任何一个组件上。组件被调用时会指向一个实例，而refs会指向这个实例。</li>
+<li>可以是一个回调函数，这个回调函数会在组件挂载之后立即执行。</li>
+<li>refs同样支持字符串，对于DOM操作，不仅可以使用findDOMNode获得该组件DOM，还可以使用refs获得组件内部的DOM。</li>
+</ul>
+<h6 id="React之外的DOM操作"><a href="#React之外的DOM操作" class="headerlink" title="React之外的DOM操作"></a>React之外的DOM操作</h6><ul>
+<li>React的 声明式渲染机制把复杂的DOM操作抽象为简单的state和props的操作，因此避免了很多直接的DOM操作。不过，仍有一些DOM操作是React无法避免的。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" <i class="fa fa-tag"></i> react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/10/深入react技术栈-1/" rel="next" title="深入react技术栈-1">
+                <i class="fa fa-chevron-left"></i> 深入react技术栈-1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/25/《你不知道的JavaScript》——作用域1-0/" rel="prev" title="《你不知道的JavaScript》——作用域1.0">
+                《你不知道的JavaScript》——作用域1.0 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE3OS82NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wlf.jpg"
+               alt="wlfsmile" />
+          <p class="site-author-name" itemprop="name">wlfsmile</p>
+           
+              <p class="site-description motion-element" itemprop="description">水满则溢，月盈则亏</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlfsmile" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wlfsmile" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/wlfsmile" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      Coding
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wlfsmile" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wlfsmile" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/4e3c58055abb" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      jianshu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wlffsmile@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一章（Raact数据流、React生命周期、React与DOM）"><span class="nav-number">1.</span> <span class="nav-text">第一章（Raact数据流、React生命周期、React与DOM）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#React数据流"><span class="nav-number">1.1.</span> <span class="nav-text">React数据流</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#state"><span class="nav-number">1.1.1.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#props"><span class="nav-number">1.1.2.</span> <span class="nav-text">props</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#React生命周期"><span class="nav-number">1.2.</span> <span class="nav-text">React生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#挂载或卸载过程"><span class="nav-number">1.2.1.</span> <span class="nav-text">挂载或卸载过程</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#数据更新过程"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据更新过程</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#React与DOM"><span class="nav-number">1.3.</span> <span class="nav-text">React与DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#ReactDOM"><span class="nav-number">1.3.1.</span> <span class="nav-text">ReactDOM</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#ReactDOM的不稳定方法"><span class="nav-number">1.3.2.</span> <span class="nav-text">ReactDOM的不稳定方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#refs"><span class="nav-number">1.3.3.</span> <span class="nav-text">refs</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#React之外的DOM操作"><span class="nav-number">1.3.4.</span> <span class="nav-text">React之外的DOM操作</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlfsmile</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="这篇总结主要摘自《你不知道的JavaScript》上卷。也是我对这一部分的总结这部分的知识点我并未完全总结，主要是一些平时常用或者易错点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数作用域和块作用域">
+<meta property="og:url" content="http://wlfsmile.win/year/04/27/函数作用域和块作用域/index.html">
+<meta property="og:site_name" content="wlfsmile的博客">
+<meta property="og:description" content="这篇总结主要摘自《你不知道的JavaScript》上卷。也是我对这一部分的总结这部分的知识点我并未完全总结，主要是一些平时常用或者易错点">
+<meta property="og:updated_time" content="2017-04-27T08:39:48.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数作用域和块作用域">
+<meta name="twitter:description" content="这篇总结主要摘自《你不知道的JavaScript》上卷。也是我对这一部分的总结这部分的知识点我并未完全总结，主要是一些平时常用或者易错点">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wlfsmile.win/year/04/27/函数作用域和块作用域/"/>
+
+
+
+
+
+  <title>函数作用域和块作用域 | wlfsmile的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/wlfsmile"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wlfsmile的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">水满则溢，月盈则亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/year/04/27/函数作用域和块作用域/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wlfsmile">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wlf.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wlfsmile的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">函数作用域和块作用域</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T16:30:43+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这篇总结主要摘自《你不知道的JavaScript》上卷。也是我对这一部分的总结<br>这部分的知识点我并未完全总结，主要是一些平时常用或者易错点</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="函数作用域"><a href="#函数作用域" class="headerlink" title="函数作用域"></a>函数作用域</h4><ul>
+<li>每声明一个函数，都会为其自身创建一个气泡。</li>
+</ul>
+<h5 id="隐藏内部实现"><a href="#隐藏内部实现" class="headerlink" title="隐藏内部实现"></a>隐藏内部实现</h5><ul>
+<li>我们可以将函数理解为先声明一个函数，再为其添加代码。也可以理解为先写代码，再用函数声明进行包装。后者就是所谓的“隐藏”，将变量隐藏在函数声明里面</li>
+<li>最小授权/暴露原则：在软件设计中，最小限度地暴露必要内容，而将其他内容都隐藏起来。</li>
+<li>作用<ul>
+<li>避免同名标识符之间的冲突</li>
+</ul>
+</li>
+</ul>
+<h5 id="匿名和具名"><a href="#匿名和具名" class="headerlink" title="匿名和具名"></a>匿名和具名</h5><ul>
+<li>如果function是声明中的第一个词，那么就是一个函数声明。否则就是一个函数表达式。</li>
+<li>函数表达式可以是匿名的，函数声明不可以省略函数名。</li>
+<li>匿名函数的弊端<ul>
+<li>在栈追踪中不会显示出有意义的函数名，使得调试困难</li>
+<li>函数引用自身时不方便，只能使用过期的argument.callee引用</li>
+<li>降低代码的可读性和可理解性</li>
+</ul>
+</li>
+<li>解决方法：行内函数表达式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">setTimeout(function()&#123;</div><div class="line">    console.log(&quot;111&quot;);</div><div class="line">&#125;,1000);</div><div class="line">//改为行内函数表达式</div><div class="line">setTimeout(function timeoutHandler()&#123;</div><div class="line">    console.log(&quot;111&quot;);</div><div class="line">&#125;,1000);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="立即执行函数表达式"><a href="#立即执行函数表达式" class="headerlink" title="立即执行函数表达式"></a>立即执行函数表达式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">(function foo()&#123;</div><div class="line">    var a = 3;</div><div class="line">    console.log(a); //3</div><div class="line">&#125;)();</div><div class="line">console.log(a); //2</div></pre></td></tr></table></figure>
+<ul>
+<li>(function foo(){…})()，第一个()将函数变成表达式，第二个()执行了这个函数</li>
+<li>IIFE：代表立即执行函数表达式</li>
+<li>另一种用法：(function(){}())。两种形式功能一样</li>
+</ul>
+<h6 id="IIFE的一些用法"><a href="#IIFE的一些用法" class="headerlink" title="IIFE的一些用法"></a>IIFE的一些用法</h6><ul>
+<li><p>把他们当做函数调用并传递参数进去</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">(function IIFE(global)&#123;</div><div class="line">    var a = 3;</div><div class="line">    console.log(a);  //3</div><div class="line">    console.log(global.a);  //2</div><div class="line">&#125;)(window);</div><div class="line">console.log(a); //2</div></pre></td></tr></table></figure>
+</li>
+<li><p>解决undefined标识符的默认值被错误覆盖引发的异常（少见）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">undefined = true; //bug</div><div class="line">(function IIFE(undefined)&#123;</div><div class="line">    var a;</div><div class="line">    if(a === undefined)&#123;</div><div class="line">        console.log(&quot;undefined is safe here!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+</li>
+<li><p>倒置代码的运行顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">(function IIFE(def)&#123;</div><div class="line">    def(window)l</div><div class="line">&#125;)(function def(global)&#123;</div><div class="line">    var a = 3;</div><div class="line">    console.log(a); //3</div><div class="line">    console.log(global.a); //2</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>将需要运行的函数放在第二位，在IIFE执行之后当做参数传递进去</p>
+</li>
+<li>先执行def,在将window当做参数传入def</li>
+</ul>
+<h4 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for(var i=0;i&lt;10;i++)&#123;</div><div class="line">    console.log(i);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>以上代码中的i会被绑定在外部作用域（函数或全局）中</li>
+<li>块作用域是一个用来对最小授权原则进行扩展的工具，将代码从在函数中隐藏信息扩展为在块中隐藏信息<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><h6 id="with"><a href="#with" class="headerlink" title="with"></a>with</h6><h6 id="try-catch"><a href="#try-catch" class="headerlink" title="try/catch"></a>try/catch</h6></li>
+<li>try/catch的catch分句会创建一个块作用域，其中声明的变量仅在catch内部有效<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">try&#123;</div><div class="line">    undefined();</div><div class="line">&#125;</div><div class="line">catch(err)&#123;</div><div class="line">    console.log(err); //正常运行</div><div class="line">&#125;</div><div class="line">console.log(err);  //RefrenceError : err not found</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="let"><a href="#let" class="headerlink" title="let"></a>let</h6><ul>
+<li>ES6引入了新的let关键字。可以绑定到所在的任何作用域中。let为其声明的变量隐式的劫持了所在的块作用域</li>
+<li>为块作用域显示创建块——在声明中的任意位置都可以使用{}来为let创建一个用于绑定的块</li>
+<li>let进行的声明不会在块作用域中进行提升</li>
+<li>垃圾收集<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function process(data)&#123;</div><div class="line">    //...</div><div class="line">&#125;    </div><div class="line">var someReallyBigData = &#123;...&#125;;</div><div class="line">process(someReallyBigData);</div><div class="line">var btn = document.getElementById(&quot;my_button&quot;);</div><div class="line">btn.addEventListener(&quot;click&quot;,function click(evt)&#123;</div><div class="line">    console.log(&quot;button clicked&quot;);</div><div class="line">&#125;,/**/false);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>click函数点击回调并不需要someReallyBigData变量。但是当process执行后，其并不一定被垃圾回收了。由于click函数形成了一个覆盖整个作用域的闭包，JavaScript引擎极可能保存着这个结构。</li>
+<li><p>块作用域用来解决</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function process(data)&#123;</div><div class="line">    //...</div><div class="line">&#125;</div><div class="line">//这个块定义的内容完事可以销毁</div><div class="line">&#123;    </div><div class="line">    let someReallyBigData = &#123;...&#125;;</div><div class="line">    process(someReallyBigData);</div><div class="line">&#125;</div><div class="line">var btn = document.getElementById(&quot;my_button&quot;);</div><div class="line">btn.addEventListener(&quot;click&quot;,function click(evt)&#123;</div><div class="line">    console.log(&quot;button clicked&quot;);</div><div class="line">&#125;,/**/false);</div></pre></td></tr></table></figure>
+</li>
+<li><p>let循环</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">for(let i=0;i&lt;10;i++)&#123;</div><div class="line">    console.log(i);</div><div class="line">&#125;</div><div class="line">console.log(i); //ReferenceError</div></pre></td></tr></table></figure>
+</li>
+<li><p>for循环头部的let将i绑定到了for循环的块中。也将其重新绑定到了循环的每一次迭代中，确保使用上一次循环迭代结束时的值重新进行赋值。</p>
+</li>
+</ul>
+<h6 id="const"><a href="#const" class="headerlink" title="const"></a>const</h6><ul>
+<li>const可以用来创建块作用域，但其值是固定的（常量）。不可修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var foo = true;</div><div class="line">if(foo)&#123;</div><div class="line">    var a = 2;</div><div class="line">    const b = 3; // 包含在if中的块作用域常量</div><div class="line">    a = 3; // 正常</div><div class="line">    b = 4; // 错误</div><div class="line">&#125;</div><div class="line">console.log(a); //3</div><div class="line">console.log(b); //ReferenceError</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h4><ul>
+<li>引擎会在解释JavaScript代码之前首先对其进行编译，编译阶段会找到所有的声明，并用合适的作用域将他们关联起来。</li>
+<li>所有声明（变量、函数）都会在任何代码被执行前首先被处理<h5 id="先声明后赋值"><a href="#先声明后赋值" class="headerlink" title="先声明后赋值"></a>先声明后赋值</h5></li>
+<li>只有声明本身会被提升，赋值或其他运行逻辑会留在原地<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(a);</div><div class="line">var a = 2;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>会被解读为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a;</div><div class="line">console.log(a); //undefined</div><div class="line">a = 2;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>函数声明会被提升，但是函数表达式却不会被提升</li>
+<li>即使是具名的函数表达式，名称在标识符赋值之前也无法在所在作用域中使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">foo(); //TypError</div><div class="line">bar(); //ReferenceError</div><div class="line">var foo= funcion bar()&#123;</div><div class="line">    //...</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>会被解读为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var foo;</div><div class="line">foo(); //TypError</div><div class="line">bar(); //ReferenceError</div><div class="line">foo= funcion bar()&#123;</div><div class="line">    //...</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h5 id="函数优先"><a href="#函数优先" class="headerlink" title="函数优先"></a>函数优先</h5><ul>
+<li>函数声明和变量声明都会被提升，函数会首先被提升，然后才是变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">foo();  //1</div><div class="line">var foo;</div><div class="line">function foo()&#123;</div><div class="line">    console.log(1);</div><div class="line">&#125;</div><div class="line">foo = function()&#123;</div><div class="line">    console.log(2);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>会被引擎理解为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">    console.log(1);</div><div class="line">&#125;</div><div class="line">foo();  //1</div><div class="line">foo = function()&#123;</div><div class="line">    console.log(2);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>虽然var foo出现在function foo()的声明之前，但是他是重复声明，所以被忽略了。函数声明会被提升到普通变量之前。</li>
+<li>后面的函数声明可以覆盖前面的函数声明。</li>
+<li>一个普通块内部的函数声明通常会被提升到所在作用域顶部，避免在块内部声明函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">foo(); //b</div><div class="line">var a = true;</div><div class="line">if(a)&#123;</div><div class="line">    function foo()&#123;</div><div class="line">        console.log(&quot;a&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;else&#123;</div><div class="line">    console.log(&quot;b&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" <i class="fa fa-tag"></i> JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/year/04/25/《你不知道的JavaScript》——作用域1-0/" rel="next" title="《你不知道的JavaScript》——作用域1.0">
+                <i class="fa fa-chevron-left"></i> 《你不知道的JavaScript》——作用域1.0
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/year/07/10/redux学习笔记——简易开发步骤/" rel="prev" title="redux学习笔记——简易开发步骤">
+                redux学习笔记——简易开发步骤 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE3OS82NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wlf.jpg"
+               alt="wlfsmile" />
+          <p class="site-author-name" itemprop="name">wlfsmile</p>
+           
+              <p class="site-description motion-element" itemprop="description">水满则溢，月盈则亏</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlfsmile" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wlfsmile" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/wlfsmile" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      Coding
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wlfsmile" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wlfsmile" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/4e3c58055abb" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      jianshu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wlffsmile@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数作用域"><span class="nav-number">1.</span> <span class="nav-text">函数作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏内部实现"><span class="nav-number">1.1.</span> <span class="nav-text">隐藏内部实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#匿名和具名"><span class="nav-number">1.2.</span> <span class="nav-text">匿名和具名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#立即执行函数表达式"><span class="nav-number">1.3.</span> <span class="nav-text">立即执行函数表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#IIFE的一些用法"><span class="nav-number">1.3.1.</span> <span class="nav-text">IIFE的一些用法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#块作用域"><span class="nav-number">2.</span> <span class="nav-text">块作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方案"><span class="nav-number">2.1.</span> <span class="nav-text">方案</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#with"><span class="nav-number">2.1.1.</span> <span class="nav-text">with</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#try-catch"><span class="nav-number">2.1.2.</span> <span class="nav-text">try/catch</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#let"><span class="nav-number">2.1.3.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#const"><span class="nav-number">2.1.4.</span> <span class="nav-text">const</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#附加"><span class="nav-number">3.</span> <span class="nav-text">附加</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#先声明后赋值"><span class="nav-number">3.1.</span> <span class="nav-text">先声明后赋值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数优先"><span class="nav-number">3.2.</span> <span class="nav-text">函数优先</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlfsmile</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

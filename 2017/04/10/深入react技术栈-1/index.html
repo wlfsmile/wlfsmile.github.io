@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="react," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="第一章（基本介绍、JSX、React组件） react是Facebook开源在github上的JavaScript库。把用户界面抽象成一个个组件。引用了JSX语法">
+<meta name="keywords" content="react">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入react技术栈-1">
+<meta property="og:url" content="http://wlfsmile.win/2017/04/10/深入react技术栈-1/index.html">
+<meta property="og:site_name" content="wlfsmile的博客">
+<meta property="og:description" content="第一章（基本介绍、JSX、React组件） react是Facebook开源在github上的JavaScript库。把用户界面抽象成一个个组件。引用了JSX语法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-15T12:51:49.353Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入react技术栈-1">
+<meta name="twitter:description" content="第一章（基本介绍、JSX、React组件） react是Facebook开源在github上的JavaScript库。把用户界面抽象成一个个组件。引用了JSX语法">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wlfsmile.win/2017/04/10/深入react技术栈-1/"/>
+
+
+
+
+
+  <title>深入react技术栈-1 | wlfsmile的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/wlfsmile"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wlfsmile的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">水满则溢，月盈则亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/04/10/深入react技术栈-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wlfsmile">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wlf.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wlfsmile的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入react技术栈-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T20:24:24+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="第一章（基本介绍、JSX、React组件）"><a href="#第一章（基本介绍、JSX、React组件）" class="headerlink" title="第一章（基本介绍、JSX、React组件）"></a>第一章（基本介绍、JSX、React组件）</h4><ul>
+<li>react是Facebook开源在github上的JavaScript库。把用户界面抽象成一个个组件。引用了JSX语法<a id="more"></a>
+</li>
+</ul>
+<h5 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h5><ul>
+<li>react把真实DOM树转成JavaScript对象树（虚拟DOM）。</li>
+<li>虚拟DOM提升了react的性能。还方便和其他平台集成。</li>
+<li>react承载了构建HTML结构化页面的职责。是通过创建与更新虚拟元素来管理整个虚拟DOM。<h5 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h5></li>
+<li>用意在于通过加入增强语法，使JavaScript更快、安全、简单。</li>
+<li>虚拟元素的构建和更新都是在内存中完成的，并不会真正的渲染到DOM中去。</li>
+<li>react创建的虚拟元素分为DOM元素和组件元素两种。分别对应着原生DOM元素与自定义元素。</li>
+<li>因为元素有公共的表达方法，我们就可以让元素们彼此嵌套或混合。这种层层封装的组件元素就是所谓的react组件，最终可以用递归渲染的方式构建出完全的DOM元素树。</li>
+<li>JXS是将HTML语法直接加入到JavaScript代码中，再通过翻译器转换到纯JavaScript后由浏览器执行。<h5 id="JSX基本语法"><a href="#JSX基本语法" class="headerlink" title="JSX基本语法"></a>JSX基本语法</h5></li>
+<li>JSX是类XML语法的ECMAScript扩展，可以说，JSX基本语法被XML囊括，但也有些许不同 <h6 id="XML基本语法"><a href="#XML基本语法" class="headerlink" title="XML基本语法"></a>XML基本语法</h6>+标签可以任意嵌套。可以清晰地看到DOM树状结构及其属性。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const List = () =&gt;(</div><div class="line">    &lt;div&gt;</div><div class="line">        &lt;Title&gt;title&lt;/Title&gt;</div><div class="line">        &lt;ul&gt;</div><div class="line">            &lt;li&gt;list&lt;/li&gt;</div><div class="line">            &lt;li&gt;list&lt;/li&gt;</div><div class="line">        &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">);</div></pre></td></tr></table></figure>
+<ul>
+<li>注意<ul>
+<li>定义标签时，只允许被一个标签包裹。</li>
+<li>标签一定要闭合。<h6 id="元素类型"><a href="#元素类型" class="headerlink" title="元素类型"></a>元素类型</h6></li>
+</ul>
+</li>
+<li>HTML标签首字母为小写，对应DOM元素；反之，则对应组件元素。</li>
+<li>依赖的组件中元素不再出现组件元素，就可以将完整的DOM树构建出来。</li>
+<li>JSX还可以通过命名空间的方法使用组件元素，可以解决组件命名冲突和对一组组件进行归类。</li>
+<li>注释<ul>
+<li>JSX中未定义注释的转换。不过在一个组件的子元素位置使用注释要用{}包起来。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const App=&#123;</div><div class="line">    &lt;Nav&gt;</div><div class="line">        &#123;/* 节点注释*/&#125;</div><div class="line">        &lt;Person</div><div class="line">        /* 多行</div><div class="line">        注释 */</div><div class="line">        name=&#123;window.name&#125;</div><div class="line">    &lt;/Nav&gt;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="元素属性"><a href="#元素属性" class="headerlink" title="元素属性"></a>元素属性</h6><p>在JSX中，DOM和组件元素都有属性。</p>
+<ul>
+<li>DOM元素的属性是标准规范化属性，除了class和for。<ul>
+<li>class——className</li>
+<li>for——HTMLFor</li>
+</ul>
+</li>
+<li>组件元素的属性是完全自定义的属性。</li>
+<li>Boolean属性<ul>
+<li>省略Boolean属性值会导致JSX任务bool值设为了true。</li>
+</ul>
+</li>
+<li><p>展开属性</p>
+<ul>
+<li>如果事先不知道设置那些pros，最好不要设置。可以用ES6 rest/spread特性来提高效率<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//可以将</div><div class="line">const data = &#123;name:&apos;foo&apos;,value:&apos;bar&apos;&#125;;</div><div class="line">const component = &lt;Component name=&#123;data.name&#125; value=&#123;data.value&#125; /&gt;;</div><div class="line">//写为</div><div class="line">const data = &#123;name:&apos;foo&apos;,value:&apos;bar&apos;&#125;;</div><div class="line">const component = &lt;Component &#123;...data&#125;/&gt;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>自定义HTML属性</p>
+<pre><code>+ 如果在JSX中往DOM元素中传入自定义属性，react不会渲染。若要使用，要使用data-前缀。
++ 在自定义标签中任意属性都是被支持的。
++ 以aria-开头的网络无障碍属性同样可正常使用。
+</code></pre><h6 id="JavaScript属性表达式"><a href="#JavaScript属性表达式" class="headerlink" title="JavaScript属性表达式"></a>JavaScript属性表达式</h6></li>
+<li>属性值要使用表达式，只要用{}替换””即可。<h6 id="HTML转义"><a href="#HTML转义" class="headerlink" title="HTML转义"></a>HTML转义</h6></li>
+</ul>
+<h5 id="React组件"><a href="#React组件" class="headerlink" title="React组件"></a>React组件</h5><ul>
+<li>组件封装的基本思路是面向对象思想。交互基本上以操作DOM为主，逻辑上是结构上需要改变哪里，我们就操作哪里。</li>
+<li>规范化标准组件<ul>
+<li>基本的封装性。</li>
+<li>简单的生命周期呈现。</li>
+<li>明确的数据流动。数据指的是调用组件的参数。<h6 id="React组件的构建"><a href="#React组件的构建" class="headerlink" title="React组件的构建"></a>React组件的构建</h6></li>
+</ul>
+</li>
+<li>react组件由属性（pros）、状态（state）以及生命周期方法三个部分组成。</li>
+<li>react自定义元素是库自己建成的</li>
+<li>react渲染过程包含模板的概率，及JSX</li>
+<li>react组件的实现均在方法与类中。所有可以相互隔离，但不包括样式</li>
+<li>react引用方式遵循ES6 module标准<h6 id="React组件的构建方法"><a href="#React组件的构建方法" class="headerlink" title="React组件的构建方法"></a>React组件的构建方法</h6></li>
+<li>React基本上由组件的构建方式、组件内的属性状态与生命周期方法组成。</li>
+<li>React组件的构造方法：React.createClass、ES6 classes和无状态函数。</li>
+<li>React.createClass<ul>
+<li>是Reactz=最传统、兼容性最好的方法。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">const Button = React.createClass(&#123;</div><div class="line">    getDefaultProps()&#123;</div><div class="line">        return&#123;</div><div class="line">            color:&apos;blue&apos;,</div><div class="line">            text:&apos;Confirm&apos;,</div><div class="line">        &#125;;</div><div class="line">    &#125;,</div><div class="line"></div><div class="line">    render()&#123;</div><div class="line">        const &#123;color,text&#125; = this.props;</div><div class="line">        return(</div><div class="line">            &lt;button className=&#123;`btn btn-$&#123;color&#125;`&#125;&gt;</div><div class="line">                &lt;em&gt;&#123;text&#125;&lt;/em&gt;</div><div class="line">            &lt;/button&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>ES6 classes <ul>
+<li>写法是通过ES6标准的类语法的方式来构建方法</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import React,&#123;Component&#125; form &apos;react&apos;;</div><div class="line">class Button extends Component&#123;</div><div class="line">    constructor(props)&#123;</div><div class="line">        super(props);</div><div class="line">    &#125;</div><div class="line">    static defaultProps = &#123;</div><div class="line">        color:&apos;blue&apos;,</div><div class="line">        text:&apos;Confirm&apos;,</div><div class="line">    &#125;;</div><div class="line">    render()&#123;</div><div class="line">        const &#123;color,text&#125; = this.props;</div><div class="line">        return(</div><div class="line">            &lt;button className=&#123;`btn btn-$&#123;color&#125;`&#125;&gt;</div><div class="line">                &lt;em&gt;&#123;text&#125;&lt;/em&gt;</div><div class="line">            &lt;/button&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>无状态函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function Button(&#123;color=&apos;blue&apos;,text=&apos;Confirm&apos;&#125;)&#123;</div><div class="line">    return(</div><div class="line">        &lt;button className=&#123;`btn btn-$&#123;color&#125;`&#125;&gt;</div><div class="line">            &lt;em&gt;&#123;text&#125;&lt;/em&gt;</div><div class="line">        &lt;/button&gt;</div><div class="line">    );</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" <i class="fa fa-tag"></i> react</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/27/极客官网项目制作总结/" rel="next" title="极客官网项目制作总结">
+                <i class="fa fa-chevron-left"></i> 极客官网项目制作总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/10/深入react技术栈-2/" rel="prev" title="深入react技术栈-2">
+                深入react技术栈-2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE3OS82NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wlf.jpg"
+               alt="wlfsmile" />
+          <p class="site-author-name" itemprop="name">wlfsmile</p>
+           
+              <p class="site-description motion-element" itemprop="description">水满则溢，月盈则亏</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlfsmile" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wlfsmile" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/wlfsmile" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      Coding
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wlfsmile" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wlfsmile" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/4e3c58055abb" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      jianshu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wlffsmile@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一章（基本介绍、JSX、React组件）"><span class="nav-number">1.</span> <span class="nav-text">第一章（基本介绍、JSX、React组件）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#虚拟DOM"><span class="nav-number">1.1.</span> <span class="nav-text">虚拟DOM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSX"><span class="nav-number">1.2.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JSX基本语法"><span class="nav-number">1.3.</span> <span class="nav-text">JSX基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#XML基本语法"><span class="nav-number">1.3.1.</span> <span class="nav-text">XML基本语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#元素类型"><span class="nav-number">1.3.2.</span> <span class="nav-text">元素类型</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#元素属性"><span class="nav-number">1.3.3.</span> <span class="nav-text">元素属性</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#JavaScript属性表达式"><span class="nav-number">1.3.4.</span> <span class="nav-text">JavaScript属性表达式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#HTML转义"><span class="nav-number">1.3.5.</span> <span class="nav-text">HTML转义</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#React组件"><span class="nav-number">1.4.</span> <span class="nav-text">React组件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#React组件的构建"><span class="nav-number">1.4.1.</span> <span class="nav-text">React组件的构建</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#React组件的构建方法"><span class="nav-number">1.4.2.</span> <span class="nav-text">React组件的构建方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlfsmile</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

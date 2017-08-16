@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node.js,express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="本文主要写的是用NodeJS+Express进行的一个服务端的建议开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Node.js+Express 简易开发服务端实例">
+<meta property="og:url" content="http://wlfsmile.win/year/08/14/使用Node-js-Express-简易来发服务端实例/index.html">
+<meta property="og:site_name" content="wlfsmile的博客">
+<meta property="og:description" content="本文主要写的是用NodeJS+Express进行的一个服务端的建议开发">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/1.png">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/2.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/3.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/4.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/1.png">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/5.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/6.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-8-14/7.JPG">
+<meta property="og:updated_time" content="2017-08-14T12:58:37.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Node.js+Express 简易开发服务端实例">
+<meta name="twitter:description" content="本文主要写的是用NodeJS+Express进行的一个服务端的建议开发">
+<meta name="twitter:image" content="http://wlfsmile.win/img/2017-8-14/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wlfsmile.win/year/08/14/使用Node-js-Express-简易来发服务端实例/"/>
+
+
+
+
+
+  <title>使用Node.js+Express 简易开发服务端实例 | wlfsmile的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/wlfsmile"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wlfsmile的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">水满则溢，月盈则亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/year/08/14/使用Node-js-Express-简易来发服务端实例/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wlfsmile">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wlf.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wlfsmile的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Node.js+Express 简易开发服务端实例</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-14T14:48:29+08:00">
+                2017-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文主要写的是用NodeJS+Express进行的一个服务端的建议开发</p>
+</blockquote>
+<p><img src="/img/2017-8-14/1.png" alt="1.png" align="center"><br><a id="more"></a><br>本文主要摘自<a href="http://www.jianshu.com/p/db4df1938eca" target="_blank" rel="external">使用 NodeJS+Express 开发服务端</a><br>github代码地址：<a href="">demo</a></p>
+<h4 id="环境配置要求"><a href="#环境配置要求" class="headerlink" title="环境配置要求"></a>环境配置要求</h4><ol>
+<li><p>安装Node.js环境，具体方法不做细说，可参考<a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="external">阮一峰的官方网站</a></p>
+</li>
+<li><p>安装express(都为全局安装)，npm有时候太慢，可安装淘宝镜像<a href="https://npm.taobao.org/" target="_blank" rel="external">cnpm</a></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install express -g</div><div class="line">npm install express-generator -g</div></pre></td></tr></table></figure>
+<ol>
+<li>初始化项目</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd 你的文件目录</div><div class="line">express 项目名称（我设为APIServer）</div></pre></td></tr></table></figure>
+<p><img src="/img/2017-8-14/2.JPG" alt="express" align="center"><br>得到的目录结构如下</p>
+<p><img src="/img/2017-8-14/3.JPG" alt="express" align="center"> + /bin:用来启动应用（服务器）</p>
+<ul>
+<li>/public: 存放静态资源目录</li>
+<li>/routes：路由用于确定应用程序如何响应对特定端点的客户机请求，包含一个URI（或路径）和一个特定的 HTTP 请求方法（GET、POST等）。每个路由可以具有一个或多个处理程序函数，这些函数在路由匹配时执行</li>
+<li>/views: 模板文件所在目录 文件格式为.jade</li>
+<li>目录app.js程序main文件 这个是服务器启动的入口</li>
+</ul>
+<h4 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h4><p>在终端最后的位置输出了如下两个命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">install dependencies:</div><div class="line"> $ cd APIServer &amp;&amp; npm install  //进入项目并安装环境</div><div class="line"></div><div class="line">run the app:</div><div class="line"> $ DEBUG=apiserver:* npm start //启动服务器</div></pre></td></tr></table></figure></p>
+<ul>
+<li>启动服务器</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm start</div></pre></td></tr></table></figure>
+<p><img src="/img/2017-8-14/4.JPG" alt="express" align="center"><br>+在浏览器中访问<a href="http://localhost:3000/" target="_blank" rel="external">http://localhost:3000/</a></p>
+<p><img src="/img/2017-8-14/1.png" align="center"></p>
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><ul>
+<li>app.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var favicon = require(&apos;serve-favicon&apos;);</div><div class="line">var logger = require(&apos;morgan&apos;);</div><div class="line">var cookieParser = require(&apos;cookie-parser&apos;);</div><div class="line">var bodyParser = require(&apos;body-parser&apos;);</div><div class="line">var app = express();</div><div class="line">///=======路由信息 （接口地址）开始 存放在./routes目录下===========//</div><div class="line"></div><div class="line">var routes = require(&apos;./routes/index&apos;);//home page接口</div><div class="line">var users = require(&apos;./routes/users&apos;); //用户接口</div><div class="line"></div><div class="line">app.use(&apos;/&apos;, routes); //在app中注册routes该接口 </div><div class="line">app.use(&apos;/users&apos;, users);//在app中注册users接口</div><div class="line">///=======路由信息 （接口地址 介绍===========//</div><div class="line"></div><div class="line">///=======模板 开始===========//</div><div class="line">// view engine setup</div><div class="line">app.set(&apos;views&apos;, path.join(__dirname, &apos;views&apos;));</div><div class="line">app.set(&apos;view engine&apos;, &apos;jade&apos;);</div><div class="line">///=======模板 结束===========//</div></pre></td></tr></table></figure>
+<ul>
+<li>index.js</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var router = express.Router();</div><div class="line"></div><div class="line"></div><div class="line">//定义一个get请求 path为根目录</div><div class="line">/* GET home page. */</div><div class="line">router.get(&apos;/&apos;, function(req, res, next) &#123;</div><div class="line">    res.render(&apos;index&apos;, &#123; title: &apos;Express&apos; &#125;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">module.exports = router;</div></pre></td></tr></table></figure>
+<p>定义一个路由的基本格式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.METHOD(PATH, HANDLER)</div></pre></td></tr></table></figure></p>
+<p>其中</p>
+<ul>
+<li>app: express的实例</li>
+<li>METHOD: HTTP 请求方法(get/post之类)。</li>
+<li>PATH: 服务器上的路径。</li>
+<li>HANDLER: 在路由匹配时执行的函数。</li>
+</ul>
+<h4 id="简单实现一个获取用户信息接口"><a href="#简单实现一个获取用户信息接口" class="headerlink" title="简单实现一个获取用户信息接口"></a>简单实现一个获取用户信息接口</h4><ul>
+<li>创建一个user.js文件,/routes/user.js</li>
+<li>定义一个User模型</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function User()&#123;</div><div class="line">    this.name;</div><div class="line">    this.city;</div><div class="line">    this.age;</div><div class="line">&#125;</div><div class="line">module.exports = User;</div></pre></td></tr></table></figure>
+<ul>
+<li>切换到users.js<br>头部添加</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var URL = require(&apos;url&apos;); //请求url模块</div><div class="line">var User = require(&apos;./user&apos;); //引入user.js</div></pre></td></tr></table></figure>
+<p>并继续添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/getUserInfo&apos;,function(req,res,next)&#123;</div><div class="line">    var user = new User();</div><div class="line">    var params = URL.parse(req.url,true).query;</div><div class="line"></div><div class="line">    if(params.id == &apos;1&apos;)&#123;</div><div class="line">        user.name = &quot;ligh&quot;;</div><div class="line">        user.age = &quot;1&quot;;</div><div class="line">        user.city = &quot;北京市&quot;;</div><div class="line">    &#125;else&#123;</div><div class="line">        user.name = &quot;SPTING&quot;;</div><div class="line">        user.age = &quot;1&quot;;</div><div class="line">       user.city = &quot;杭州市&quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    var response = &#123;status:1,data:user&#125;;</div><div class="line">    res.send(JSON.stringify(response));</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>其中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">获取url参数 依赖于url模块 使用前需要使用  require(&apos;url&apos;)</div><div class="line">var params = URL.parse(req.url, true).query;</div></pre></td></tr></table></figure></p>
+<p><img src="/img/2017-8-14/5.JPG" alt="express" align="center"><br>由于users.js路由信息已经在app.js注册<br>停止服务器 重新start服务器即可直接访问</p>
+<ul>
+<li>调用方式<br><a href="http://localhost:3000/users/getUserInfo?id=1" target="_blank" rel="external">http://localhost:3000/users/getUserInfo?id=1</a><br>或者<br><a href="http://localhost:3000/users/getUserInfo?id=2" target="_blank" rel="external">http://localhost:3000/users/getUserInfo?id=2</a></li>
+</ul>
+<p><img src="/img/2017-8-14/6.JPG" alt="express" align="center"> <img src="/img/2017-8-14/7.JPG" alt="express" align="center"><br>注意我们访问的方式为users/getUserInfo?id=1 而不是基于根<br>原因是我们在app.js注册方式为app.use(‘/users’, users);<br>我们可以利用这种方式 开发模块功能 比如 你有另外一个模块为msg<br>我们注册为：app.use(‘/msgs’, msgs);<br>调用方式为<br><a href="http://localhost:3000/msgs/getUserMsgs?id=1" target="_blank" rel="external">http://localhost:3000/msgs/getUserMsgs?id=1</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node-js/" <i class="fa fa-tag"></i> node.js</a>
+          
+            <a href="/tags/express/" <i class="fa fa-tag"></i> express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/year/07/10/redux学习笔记——简易开发步骤/" rel="next" title="redux学习笔记——简易开发步骤">
+                <i class="fa fa-chevron-left"></i> redux学习笔记——简易开发步骤
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE3OS82NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wlf.jpg"
+               alt="wlfsmile" />
+          <p class="site-author-name" itemprop="name">wlfsmile</p>
+           
+              <p class="site-description motion-element" itemprop="description">水满则溢，月盈则亏</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlfsmile" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wlfsmile" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/wlfsmile" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      Coding
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wlfsmile" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wlfsmile" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/4e3c58055abb" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      jianshu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wlffsmile@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#环境配置要求"><span class="nav-number">1.</span> <span class="nav-text">环境配置要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动服务器"><span class="nav-number">2.</span> <span class="nav-text">启动服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本使用"><span class="nav-number">3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单实现一个获取用户信息接口"><span class="nav-number">4.</span> <span class="nav-text">简单实现一个获取用户信息接口</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlfsmile</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

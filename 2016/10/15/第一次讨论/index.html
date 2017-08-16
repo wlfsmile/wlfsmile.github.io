@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="这篇博客写于 2016-10-15  这个主要是我们前端小组第一次讨论的内容，行内与块级、浮动与清除浮动、定位、兼容性处理。其中大多内容都是我从网上收集来的。还是需要有自己的想法。感觉这次讨论还是挺有一定的效果的。至少我把有一些内容更加完整跟清晰化了。">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一次讨论">
+<meta property="og:url" content="http://wlfsmile.win/2016/10/15/第一次讨论/index.html">
+<meta property="og:site_name" content="wlfsmile的博客">
+<meta property="og:description" content="这篇博客写于 2016-10-15  这个主要是我们前端小组第一次讨论的内容，行内与块级、浮动与清除浮动、定位、兼容性处理。其中大多内容都是我从网上收集来的。还是需要有自己的想法。感觉这次讨论还是挺有一定的效果的。至少我把有一些内容更加完整跟清晰化了。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-15T12:51:49.354Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一次讨论">
+<meta name="twitter:description" content="这篇博客写于 2016-10-15  这个主要是我们前端小组第一次讨论的内容，行内与块级、浮动与清除浮动、定位、兼容性处理。其中大多内容都是我从网上收集来的。还是需要有自己的想法。感觉这次讨论还是挺有一定的效果的。至少我把有一些内容更加完整跟清晰化了。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wlfsmile.win/2016/10/15/第一次讨论/"/>
+
+
+
+
+
+  <title>第一次讨论 | wlfsmile的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <a href="https://github.com/wlfsmile"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png">
+    </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">wlfsmile的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">水满则溢，月盈则亏</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2016/10/15/第一次讨论/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wlfsmile">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wlf.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wlfsmile的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第一次讨论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-15T19:17:03+08:00">
+                2016-10-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong> 这篇博客写于 2016-10-15 </strong><br><strong> 这个主要是我们前端小组第一次讨论的内容，行内与块级、浮动与清除浮动、定位、兼容性处理。其中大多内容都是我从网上收集来的。还是需要有自己的想法。感觉这次讨论还是挺有一定的效果的。至少我把有一些内容更加完整跟清晰化了。 </strong><br><a id="more"></a></p>
+<h5 id="【行内元素和块级元素】"><a href="#【行内元素和块级元素】" class="headerlink" title="【行内元素和块级元素】"></a>【行内元素和块级元素】</h5><p>块级元素：div , p , form, ul, li , ol, dl， address, fieldset, hr, menu, table<br>行内元素：span, strong, em, br, img , input, label, select, textarea, cite<br>可变元素（根据上下文语境而定）：<br>button，applet，del，ifram，ins，map，object，script<br><strong> 区别：</strong></p>
+<ol>
+<li>块级元素会独占一行，其宽度自动填满其父元素宽度<br>　行内元素不会独占一行，相邻的行内元素会排列在同一行里，知道一行排不下，才会换行，其宽度随元素的内容 而变化</li>
+<li>块级元素可以设置 width, height属性，行内元素设置width, height无效<br>【注意：块级元素即使设置了宽度，仍然是独占一行的】</li>
+<li>块级元素可以设置margin 和 padding. 行内元素的水平方向的都产生边距效果，但是竖直方向的都不会产生边距效果。（水平方向有效，竖直方向无效）。<br>将display设为block，可以让行内元素表现像块级元素。<br>line-block在IE6下有问题。  </li>
+</ol>
+<h5 id="【浮动和清除浮动（闭合浮动）】"><a href="#【浮动和清除浮动（闭合浮动）】" class="headerlink" title="【浮动和清除浮动（闭合浮动）】"></a>【浮动和清除浮动（闭合浮动）】</h5><p>高度塌陷：元素含有浮动元素—破坏inline box—破坏line box—没有高度—塌陷。<br>当标签里面的元素只要样子没有实际高度时就会塌陷。</p>
+<ul>
+<li>若浮动对象有负边界，浮动对象可能会浮到其所在父对象外边。</li>
+<li>若较宽的子盒子有一个较窄的父盒子中拥有浮动属性，不会影响父盒子宽度，子盒子越到父盒子外，父盒子不会有文本流浮动，而子盒子会覆盖在上。</li>
+<li>父盒子为自动高度或不设，子盒子拥有浮动，并高度超过了父盒子（解决方法：加入clear:both）<br><strong> 清除浮动 </strong><br>IE下：使元素haslayout。<br>非IE下：通常使用overflow:hidden。<br><strong> 方法：</strong></li>
+</ul>
+<ol>
+<li>直接添加clear:both（不推荐）；</li>
+<li>overflow+zoom：有局限性，margin为负定位或是负的绝对定位。.fix{overflow:hidden;zoom:1;}。</li>
+<li>after+zoom：.fix{zoom:1;} .fix:after{display:block;content:”.”;clear:both;line-height:0;visibility:hidden;}</li>
+</ol>
+<ul>
+<li>方法：<ul>
+<li>让容器也浮动。  </li>
+<li>设置容器overflow为auto或hidden（有副作用）。</li>
+</ul>
+</li>
+</ul>
+<h5 id="【定位】"><a href="#【定位】" class="headerlink" title="【定位】"></a>【定位】</h5><p>基本方式：static（默认定位方式）、relative、absolute。<br>relative：相对定位，相对于原来的位置，但是原来的位置仍然保留。<br>absolute：绝对定位，相对于最近的非标准流定位，原来的位置消失，被最后边的位置所顶替。<br>fixed：固定定位。<br>定位机制是由普通流、浮动、绝对定位三种组成。<br>只要父级元素设置了position并且不是static，那么设定了absolute的子元素，即以此为包含块（最近的）。<br>绝对定位元素定位的参照物使其包含块，即相对于包含块进行定位，不一定是其父元素。</p>
+<h5 id="【兼容性处理】"><a href="#【兼容性处理】" class="headerlink" title="【兼容性处理】"></a>【兼容性处理】</h5><p>CSS hack：为了页面统一，针对不同浏览器或不同版本写出可解析的css样式，把这个针对不同浏览器/版本写的css过程叫做css hack。<br><strong> 问题：</strong></p>
+<ul>
+<li>DOCTYPE 影响 CSS 处理 ；</li>
+<li>FF: 设置 padding 后， div 会增加 height 和 width， 但 IE 不会， 故需要用 !important 多设一个 height 和 width 。FF: 支持 !important， IE 则忽略,可用 !important 为 FF 特别设置样式</li>
+<li>在mozilla firefox和IE中的BOX模型解释不一致导致相差2px解决方法：<ul>
+<li>div{margin:30px!important;margin:28px;} 注意这两个margin的顺序一定不能写反，!important这个属性IE不能识别，但别的浏览器可以识别。</li>
+</ul>
+</li>
+</ul>
+<p><strong> 浏览器差异：</strong></p>
+<ol>
+<li>ul和ol列表缩进问题</li>
+</ol>
+<ul>
+<li>消除ul、ol等列表的缩进时，样式应写成：{list-style:none;margin:0px;padding:0px; }</li>
+<li>其中margin属性对IE有效，padding属性对FireFox有效。  </li>
+</ul>
+<ol>
+<li>css透明度 </li>
+</ol>
+<ul>
+<li>IE：filter:progid:DXImageTransform.Microsoft.Alpha(style=0,opacity=60)。 </li>
+<li>FF：opacity:0.6。<br>最好两个都写，并将opacity属性放在下面。</li>
+</ul>
+<ol>
+<li>css圆角问题</li>
+</ol>
+<ul>
+<li>IE：IE6及以下不支持圆角。</li>
+<li>FF：支持border-radius。  </li>
+</ul>
+<ol>
+<li>firefox不支持hand，但ie支持pointer ，两者都是手形指示。 最好统一使用pointer。<br><strong> 浏览器bug：</strong></li>
+</ol>
+<ul>
+<li>IE的双边距：设置为float的div在IE下设置margin会加倍。<ul>
+<li>解决方法：在div面加上display:inline;   </li>
+</ul>
+</li>
+<li>IE选择器空格bug：在IE中，处理伪类时，如果伪类的名称中带有连字符“-”，伪类名称后面就得跟一个空格，不然定义无效。在FF中无影响。<h5 id="【其他】"><a href="#【其他】" class="headerlink" title="【其他】"></a>【其他】</h5><strong> display:none和visiblity:hidden的区别：</strong><br>display:none，不占位，相当于完全消失。而visiblity:hidden，占位，相当于只是把它给隐藏掉。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" <i class="fa fa-tag"></i> css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/27/第二次讨论/" rel="prev" title="第二次讨论">
+                第二次讨论 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDE3OS82NzM0"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/wlf.jpg"
+               alt="wlfsmile" />
+          <p class="site-author-name" itemprop="name">wlfsmile</p>
+           
+              <p class="site-description motion-element" itemprop="description">水满则溢，月盈则亏</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wlfsmile" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/wlfsmile" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                    
+                      Twitter
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://coding.net/u/wlfsmile" target="_blank" title="Coding">
+                  
+                    <i class="fa fa-fw fa-github-alt"></i>
+                  
+                    
+                      Coding
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/wlfsmile" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      微博
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/wlfsmile" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      知乎
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/u/4e3c58055abb" target="_blank" title="jianshu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      jianshu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="wlffsmile@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#【行内元素和块级元素】"><span class="nav-number">1.</span> <span class="nav-text">【行内元素和块级元素】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【浮动和清除浮动（闭合浮动）】"><span class="nav-number">2.</span> <span class="nav-text">【浮动和清除浮动（闭合浮动）】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【定位】"><span class="nav-number">3.</span> <span class="nav-text">【定位】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【兼容性处理】"><span class="nav-number">4.</span> <span class="nav-text">【兼容性处理】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#【其他】"><span class="nav-number">5.</span> <span class="nav-text">【其他】</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wlfsmile</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
