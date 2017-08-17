@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-08-16T05:57:48.892Z</updated>
+  <updated>2017-08-17T14:35:05.608Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -14,6 +14,57 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Express+MongoDB实现简易登录注册</title>
+    <link href="http://wlfsmile.win/2017/08/17/Express-MongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/"/>
+    <id>http://wlfsmile.win/2017/08/17/Express-MongoDB实现简易登录注册/</id>
+    <published>2017-08-17T14:14:58.000Z</published>
+    <updated>2017-08-17T14:35:05.608Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照<a href="http://blog.csdn.net/miss_ll/article/details/53927873" target="_blank" rel="external">实例博客</a><br><img src="/img/2017-8-17/q.JPG" align="center"><br><a id="more"></a></p>
+<h4 id="前期准备（了解）"><a href="#前期准备（了解）" class="headerlink" title="前期准备（了解）"></a>前期准备（了解）</h4><ul>
+<li>Node.js+Express</li>
+<li>MongoDB</li>
+<li>ejs引擎模板</li>
+<li>bootstrap(可选,也可直接查资料)</li>
+</ul>
+<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><ul>
+<li>一个默认页（’/‘）</li>
+<li>登录页（’/login’）</li>
+<li>注册页（’/register’）</li>
+<li>登录完成之后的一个显示页（’/home’）</li>
+<li>注销的功能（’/logout’）</li>
+</ul>
+<p>基本是默认页一进来，有<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/home中点击注销，跳出登录</div><div class="line"></div><div class="line">#### 基本步骤</div><div class="line">1.初始化项目</div></pre></td></tr></table></figure></p>
+<p>express -e login<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2.安装配置环境</div></pre></td></tr></table></figure></p>
+<p>cd login<br>npm install<br>```</p>
+<p>以上步骤跟我上一篇文章有些重复，有兴趣的可以看一下我的<a href="http://wlfsmile.win/2017/08/14/%E4%BD%BF%E7%94%A8Node.js-Express-%E7%AE%80%E6%98%93%E6%9D%A5%E5%8F%91%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E4%BE%8B/#more">上一篇博客</a></p>
+<p>3.创建剩下的ejs（views目录下）</p>
+<ul>
+<li>login.ejs</li>
+<li>register.ejs</li>
+<li>home.ejs</li>
+</ul>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><ol>
+<li>register.ejs</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照&lt;a href=&quot;http://blog.csdn.net/miss_ll/article/details/53927873&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;实例博客&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;/img/2017-8-17/q.JPG&quot; align=&quot;center&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Node" scheme="http://wlfsmile.win/categories/Node/"/>
+    
+    
+      <category term="express" scheme="http://wlfsmile.win/tags/express/"/>
+    
+      <category term="MangoDB" scheme="http://wlfsmile.win/tags/MangoDB/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo博客分支教训</title>
