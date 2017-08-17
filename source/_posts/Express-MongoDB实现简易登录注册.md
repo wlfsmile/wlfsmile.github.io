@@ -5,7 +5,7 @@ tags: [express,MangoDB]
 categories: Node
 ---
 这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照[实例博客](http://blog.csdn.net/miss_ll/article/details/53927873)
-<img src="/img/2017-8-17/q.JPG" align="center" />
+<img src="/img/2017-8-17/1.JPG" align="center" />
 <!-- more -->
 #### 前期准备（了解）
 + Node.js+Express
