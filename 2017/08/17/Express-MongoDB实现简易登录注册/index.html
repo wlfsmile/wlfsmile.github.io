@@ -111,7 +111,7 @@
 <meta property="og:description" content="这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照实例博客">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wlfsmile.win/img/2017-8-17/1.JPG">
-<meta property="og:updated_time" content="2017-08-17T14:40:25.955Z">
+<meta property="og:updated_time" content="2017-08-18T04:45:25.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Express+MongoDB实现简易登录注册">
 <meta name="twitter:description" content="这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照实例博客">
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  207
+                  243
                 </span>
               
 
@@ -413,9 +413,9 @@
 <li>登录完成之后的一个显示页（’/home’）</li>
 <li>注销的功能（’/logout’）</li>
 </ul>
-<p>基本是默认页一进来，有<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">/home中点击注销，跳出登录</div><div class="line"></div><div class="line">#### 基本步骤</div><div class="line">1.初始化项目</div></pre></td></tr></table></figure></p>
-<p>express -e login<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2.安装配置环境</div></pre></td></tr></table></figure></p>
-<p>cd login<br>npm install<br>```</p>
+<p>基本是默认页一进来，有登录和注册两个按钮<br>点击不同按钮到不同的页面，登录页面点击登录，若信息正确，跳入/home<br>/home中点击注销，跳出登录</p>
+<h4 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h4><p>1.初始化项目<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">express -e login</div></pre></td></tr></table></figure></p>
+<p>2.安装配置环境<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd login</div><div class="line">npm install</div></pre></td></tr></table></figure></p>
 <p>以上步骤跟我上一篇文章有些重复，有兴趣的可以看一下我的<a href="http://wlfsmile.win/2017/08/14/%E4%BD%BF%E7%94%A8Node.js-Express-%E7%AE%80%E6%98%93%E6%9D%A5%E5%8F%91%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AE%9E%E4%BE%8B/#more">上一篇博客</a></p>
 <p>3.创建剩下的ejs（views目录下）</p>
 <ul>
@@ -694,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前期准备（了解）"><span class="nav-number">1.</span> <span class="nav-text">前期准备（了解）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本思路"><span class="nav-number">2.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#前期准备（了解）"><span class="nav-number">1.</span> <span class="nav-text">前期准备（了解）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本思路"><span class="nav-number">2.</span> <span class="nav-text">基本思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本步骤"><span class="nav-number">3.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
