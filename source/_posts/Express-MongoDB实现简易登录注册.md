@@ -4,8 +4,9 @@ date: 2017-08-17 22:14:58
 tags: [express,MangoDB]
 categories: Node
 ---
-这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照[实例博客](http://blog.csdn.net/miss_ll/article/details/53927873)
 <img src="/img/2017-8-17/1.JPG" align="center" />
+
+这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照[实例博客](http://blog.csdn.net/miss_ll/article/details/53927873)
 <!-- more -->
 #### 前期准备（了解）
 + Node.js+Express
@@ -20,7 +21,8 @@ categories: Node
 + 登录完成之后的一个显示页（'/home'）
 + 注销的功能（'/logout'）
 
-基本是默认页一进来，有```登录```和```注册```两个按钮，点击不同按钮到不同的页面，```登录```页面点击登录，若信息正确，跳入/home
+基本是默认页一进来，有登录和注册两个按钮
+点击不同按钮到不同的页面，登录页面点击登录，若信息正确，跳入/home
 /home中点击注销，跳出登录
 
 #### 基本步骤
