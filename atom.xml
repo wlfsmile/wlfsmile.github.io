@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-08-18T06:24:52.966Z</updated>
+  <updated>2017-10-19T13:23:13.315Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -16,11 +16,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>浅谈Nginx前后端分离</title>
+    <link href="http://wlfsmile.win/2017/10/19/%E6%B5%85%E8%B0%88Nginx%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"/>
+    <id>http://wlfsmile.win/2017/10/19/浅谈Nginx前后端分离/</id>
+    <published>2017-10-19T11:52:43.000Z</published>
+    <updated>2017-10-19T13:23:13.315Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/img/2017-10-19/1.jpg" align="center"><br><a id="more"></a></p>
+<h4 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h4><blockquote>
+<p>Nginx是一款轻量级的Web 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。特点是占有内存小，并发能力强。</p>
+</blockquote>
+<h4 id="正向代理和反向代理"><a href="#正向代理和反向代理" class="headerlink" title="正向代理和反向代理"></a>正向代理和反向代理</h4><ul>
+<li>正向代理：一般默认为正向代理，用户访问不了一个资源，通过代理服务器去访问这个资源，将响应头待回给用户，用户知道自己访问的是其他服务器的资源，代理服务器不会掩饰URL</li>
+<li>反向代理：代理服务器是在中间层，但是用户不知道自己访问的资源是其他服务器的资源，代理服务器会掩饰URL</li>
+</ul>
+<h4 id="使用Nginx反向代理tomcat"><a href="#使用Nginx反向代理tomcat" class="headerlink" title="使用Nginx反向代理tomcat"></a>使用Nginx反向代理tomcat</h4><h5 id="启动Nginx"><a href="#启动Nginx" class="headerlink" title="启动Nginx"></a>启动Nginx</h5><ul>
+<li>直接点击Nginx.exe</li>
+<li>使用命令行，cd 到Nginx目录下，start nginx<br><img src="/img/2017-10-19/2.jpg"></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/img/2017-10-19/1.jpg&quot; align=&quot;center&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="nginx" scheme="http://wlfsmile.win/categories/nginx/"/>
+    
+    
+      <category term="nginx" scheme="http://wlfsmile.win/tags/nginx/"/>
+    
+      <category term="前后分离" scheme="http://wlfsmile.win/tags/%E5%89%8D%E5%90%8E%E5%88%86%E7%A6%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Express+MongoDB实现简易登录注册</title>
     <link href="http://wlfsmile.win/2017/08/17/Express-MongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/"/>
     <id>http://wlfsmile.win/2017/08/17/Express-MongoDB实现简易登录注册/</id>
     <published>2017-08-17T14:14:58.000Z</published>
-    <updated>2017-08-18T06:24:52.966Z</updated>
+    <updated>2017-10-19T13:23:13.279Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/img/2017-8-17/1.JPG" align="center"></p>
 <p>这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照<a href="http://blog.csdn.net/miss_ll/article/details/53927873" target="_blank" rel="external">实例博客</a></p>
@@ -70,7 +106,10 @@
 <ul>
 <li>与上述的注册页类似</li>
 </ul>
-<p>4. </p>
+<ol>
+<li>home.ejs<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+</li>
+</ol>
 ]]></content>
     
     <summary type="html">
@@ -95,7 +134,7 @@
     <link href="http://wlfsmile.win/2017/08/16/hexo%E5%8D%9A%E5%AE%A2%E5%88%86%E6%94%AF%E6%95%99%E8%AE%AD/"/>
     <id>http://wlfsmile.win/2017/08/16/hexo博客分支教训/</id>
     <published>2017-08-16T05:17:43.000Z</published>
-    <updated>2017-08-16T05:57:48.892Z</updated>
+    <updated>2017-10-19T13:23:13.302Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/img/2017-8-16/1.png" align="center"></p>
 <p>最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。<br><a id="more"></a><br>如果想要进行hexo博客分支备份，推荐<a href="http://www.jianshu.com/p/57b5a384f234" target="_blank" rel="external">Hexo博客备份</a></p>
@@ -142,7 +181,7 @@
     <link href="http://wlfsmile.win/2017/08/15/express-session%E4%BB%8B%E7%BB%8D/"/>
     <id>http://wlfsmile.win/2017/08/15/express-session介绍/</id>
     <published>2017-08-15T14:15:39.000Z</published>
-    <updated>2017-08-16T05:13:00.196Z</updated>
+    <updated>2017-10-19T13:23:13.281Z</updated>
     
     <summary type="html">
     
@@ -240,9 +279,9 @@
       <category term="Node" scheme="http://wlfsmile.win/categories/Node/"/>
     
     
-      <category term="express" scheme="http://wlfsmile.win/tags/express/"/>
-    
       <category term="node.js" scheme="http://wlfsmile.win/tags/node-js/"/>
+    
+      <category term="express" scheme="http://wlfsmile.win/tags/express/"/>
     
   </entry>
   
@@ -251,7 +290,7 @@
     <link href="http://wlfsmile.win/2017/07/10/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%AE%80%E6%98%93%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/"/>
     <id>http://wlfsmile.win/2017/07/10/redux学习笔记——简易开发步骤/</id>
     <published>2017-07-10T07:18:40.000Z</published>
-    <updated>2017-08-16T05:19:13.004Z</updated>
+    <updated>2017-10-19T13:23:13.314Z</updated>
     
     <content type="html"><![CDATA[<p>这篇文章主要是写我一开始学习redux的开发的步骤，比较适合刚刚入门的小白，不知道怎么开始下手代码,本篇文章以计数器为例。本篇文章参考<a href="http://www.cnblogs.com/yinluhui0229/p/6709782.html" target="_blank" rel="external">Redux学习笔记：Redux简易开发步骤</a><br>github代码地址<a href="https://github.com/wlfsmile/Redux/tree/master/counter" target="_blank" rel="external">react-redux-counter</a></p>
 <a id="more"></a>
@@ -920,7 +959,7 @@
     <link href="http://wlfsmile.win/2017/01/15/hello-world/"/>
     <id>http://wlfsmile.win/2017/01/15/hello-world/</id>
     <published>2017-01-15T14:15:39.000Z</published>
-    <updated>2017-08-16T05:06:53.223Z</updated>
+    <updated>2017-10-19T13:23:13.282Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <a id="more"></a>
