@@ -122,4 +122,7 @@ npm install
 3. login.ejs(登录页)
 + 与上述的注册页类似
 
-4. 
+4. home.ejs
+```
+
+```
