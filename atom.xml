@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-10-20T12:01:14.969Z</updated>
+  <updated>2017-10-21T14:53:01.862Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -16,11 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CSS——浮动及清除浮动</title>
+    <link href="http://wlfsmile.win/2017/10/21/CSS%E2%80%94%E2%80%94%E6%B5%AE%E5%8A%A8%E5%8F%8A%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
+    <id>http://wlfsmile.win/2017/10/21/CSS——浮动及清除浮动/</id>
+    <published>2017-10-21T14:49:07.000Z</published>
+    <updated>2017-10-21T14:53:01.862Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><ul>
+<li>浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素<a id="more"></a>
+<h5 id="浮动和绝对定位的区别"><a href="#浮动和绝对定位的区别" class="headerlink" title="浮动和绝对定位的区别"></a>浮动和绝对定位的区别</h5></li>
+<li>如下代码：   </li>
+</ul>
+<p>html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;box&quot;&gt;</div><div class="line">    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;div class=&quot;right&quot;&gt;</div><div class="line">        我只是想测试一下哈哈哈哈哈哈哈哈哈</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>css<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.left&#123;</div><div class="line">    width: 200px;</div><div class="line">    height: 300px;</div><div class="line">    background-color: red;</div><div class="line">    position: absolute; //绝对定位  浮动则换成float:left</div><div class="line">&#125;</div><div class="line">.right&#123;</div><div class="line">    width: 500px;</div><div class="line">    height: 400px;</div><div class="line">    background-color: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>效果  </li>
+</ul>
+<p>绝对定位<br><img src="./img/2017-10-21/float1.JPG" align="left"></p>
+<p>浮动<br><img src="./img/2017-10-21/float2.JPG" align="left"></p>
+<ul>
+<li>绝对定位：完全脱离文本流，并且相对于其包含块定位，之后的元素会彻底占据之前元素位置，文本也会</li>
+<li>浮动：文本环绕浮动元素</li>
+</ul>
+<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><h5 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h5><ul>
+<li>在其父元素设置{overflow:hidden}</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;浮动&quot;&gt;&lt;a href=&quot;#浮动&quot; class=&quot;headerlink&quot; title=&quot;浮动&quot;&gt;&lt;/a&gt;浮动&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素
+    
+    </summary>
+    
+      <category term="CSS" scheme="http://wlfsmile.win/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://wlfsmile.win/tags/CSS/"/>
+    
+      <category term="浮动" scheme="http://wlfsmile.win/tags/%E6%B5%AE%E5%8A%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>浅谈Nginx前后端分离</title>
     <link href="http://wlfsmile.win/2017/10/19/%E6%B5%85%E8%B0%88Nginx%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/"/>
     <id>http://wlfsmile.win/2017/10/19/浅谈Nginx前后端分离/</id>
     <published>2017-10-19T11:52:43.000Z</published>
-    <updated>2017-10-20T12:01:14.969Z</updated>
+    <updated>2017-10-21T14:27:48.163Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/img/2017-10-19/1.jpg" align="center"><br><a id="more"></a></p>
 <h4 id="什么是Nginx"><a href="#什么是Nginx" class="headerlink" title="什么是Nginx"></a>什么是Nginx</h4><blockquote>
@@ -70,7 +114,7 @@
     <link href="http://wlfsmile.win/2017/08/17/Express-MongoDB%E5%AE%9E%E7%8E%B0%E7%AE%80%E6%98%93%E7%99%BB%E5%BD%95%E6%B3%A8%E5%86%8C/"/>
     <id>http://wlfsmile.win/2017/08/17/Express-MongoDB实现简易登录注册/</id>
     <published>2017-08-17T14:14:58.000Z</published>
-    <updated>2017-10-19T13:23:13.279Z</updated>
+    <updated>2017-10-21T14:27:48.156Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/img/2017-8-17/1.JPG" align="center"></p>
 <p>这是我在学习express过程中参照网上实例做的一个小demo，实现用express+mongodb的一个简单的登录注册，其中大部分参照<a href="http://blog.csdn.net/miss_ll/article/details/53927873" target="_blank" rel="external">实例博客</a></p>
@@ -148,7 +192,7 @@
     <link href="http://wlfsmile.win/2017/08/16/hexo%E5%8D%9A%E5%AE%A2%E5%88%86%E6%94%AF%E6%95%99%E8%AE%AD/"/>
     <id>http://wlfsmile.win/2017/08/16/hexo博客分支教训/</id>
     <published>2017-08-16T05:17:43.000Z</published>
-    <updated>2017-10-19T13:23:13.302Z</updated>
+    <updated>2017-10-21T14:27:48.160Z</updated>
     
     <content type="html"><![CDATA[<p><img src="/img/2017-8-16/1.png" align="center"></p>
 <p>最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。<br><a id="more"></a><br>如果想要进行hexo博客分支备份，推荐<a href="http://www.jianshu.com/p/57b5a384f234" target="_blank" rel="external">Hexo博客备份</a></p>
@@ -195,7 +239,7 @@
     <link href="http://wlfsmile.win/2017/08/15/express-session%E4%BB%8B%E7%BB%8D/"/>
     <id>http://wlfsmile.win/2017/08/15/express-session介绍/</id>
     <published>2017-08-15T14:15:39.000Z</published>
-    <updated>2017-10-19T13:23:13.281Z</updated>
+    <updated>2017-10-21T14:27:48.158Z</updated>
     
     <summary type="html">
     
@@ -293,9 +337,9 @@
       <category term="Node" scheme="http://wlfsmile.win/categories/Node/"/>
     
     
-      <category term="node.js" scheme="http://wlfsmile.win/tags/node-js/"/>
-    
       <category term="express" scheme="http://wlfsmile.win/tags/express/"/>
+    
+      <category term="node.js" scheme="http://wlfsmile.win/tags/node-js/"/>
     
   </entry>
   
@@ -304,7 +348,7 @@
     <link href="http://wlfsmile.win/2017/07/10/redux%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E7%AE%80%E6%98%93%E5%BC%80%E5%8F%91%E6%AD%A5%E9%AA%A4/"/>
     <id>http://wlfsmile.win/2017/07/10/redux学习笔记——简易开发步骤/</id>
     <published>2017-07-10T07:18:40.000Z</published>
-    <updated>2017-10-19T13:23:13.314Z</updated>
+    <updated>2017-10-21T14:27:48.162Z</updated>
     
     <content type="html"><![CDATA[<p>这篇文章主要是写我一开始学习redux的开发的步骤，比较适合刚刚入门的小白，不知道怎么开始下手代码,本篇文章以计数器为例。本篇文章参考<a href="http://www.cnblogs.com/yinluhui0229/p/6709782.html" target="_blank" rel="external">Redux学习笔记：Redux简易开发步骤</a><br>github代码地址<a href="https://github.com/wlfsmile/Redux/tree/master/counter" target="_blank" rel="external">react-redux-counter</a></p>
 <a id="more"></a>
@@ -973,7 +1017,7 @@
     <link href="http://wlfsmile.win/2017/01/15/hello-world/"/>
     <id>http://wlfsmile.win/2017/01/15/hello-world/</id>
     <published>2017-01-15T14:15:39.000Z</published>
-    <updated>2017-10-19T13:23:13.282Z</updated>
+    <updated>2017-10-21T14:27:48.159Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <a id="more"></a>
