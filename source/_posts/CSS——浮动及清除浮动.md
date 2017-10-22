@@ -1,7 +1,12 @@
-### 浮动和清除浮动
+---
+title: CSS——浮动及清除浮动
+date: 2017-10-21 22:49:07
+tags: [CSS,浮动]
+categories: CSS
+---
 #### 浮动
 + 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素
-
+<!-- more  -->
 ##### 浮动和绝对定位的区别
 + 如下代码：   
 
@@ -33,10 +38,12 @@ css
 + 效果  
 
 绝对定位
-<img src='./images/float1.JPG' align="left" />
+
+<img src='/img/2017-10-21/float1.JPG' align="center" />
 
 浮动
-<img src='./images/float2.JPG' align="left" />
+
+<img src='/img/2017-10-21/float2.JPG' align="center" />
 
 + 绝对定位：完全脱离文本流，并且相对于其包含块定位，之后的元素会彻底占据之前元素位置，文本也会
 + 浮动：文本环绕浮动元素
