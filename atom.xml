@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-10-21T14:55:11.233Z</updated>
+  <updated>2017-10-22T14:27:21.302Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wlfsmile.win/2017/10/21/CSS%E2%80%94%E2%80%94%E6%B5%AE%E5%8A%A8%E5%8F%8A%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
     <id>http://wlfsmile.win/2017/10/21/CSS——浮动及清除浮动/</id>
     <published>2017-10-21T14:49:07.000Z</published>
-    <updated>2017-10-21T14:55:11.233Z</updated>
+    <updated>2017-10-22T14:27:21.302Z</updated>
     
     <content type="html"><![CDATA[<h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><ul>
 <li>浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素<a id="more"></a>
@@ -32,8 +32,10 @@
 <ul>
 <li>效果  </li>
 </ul>
-<p>绝对定位<br><img src="../img/2017-10-21/float1.JPG" align="left"></p>
-<p>浮动<br><img src="../img/2017-10-21/float2.JPG" align="left"></p>
+<p>绝对定位</p>
+<p><img src="/img/2017-10-21/float1.JPG" align="center"></p>
+<p>浮动</p>
+<p><img src="/img/2017-10-21/float2.JPG" align="center"></p>
 <ul>
 <li>绝对定位：完全脱离文本流，并且相对于其包含块定位，之后的元素会彻底占据之前元素位置，文本也会</li>
 <li>浮动：文本环绕浮动元素</li>
