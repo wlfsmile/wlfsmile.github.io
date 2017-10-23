@@ -102,20 +102,24 @@
 
 
 
-<meta name="description" content="浮动 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素">
+<meta name="description" content="浮动 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素 浮动产生bug的原因：当一个内层元素浮动时，如果没有关闭浮动，父元素就不会再包含这个浮动的内层元素了，因为此时浮动元素已经脱离了文档流，导致外层不能被撑开">
 <meta name="keywords" content="CSS,浮动">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS——浮动及清除浮动">
 <meta property="og:url" content="http://wlfsmile.win/2017/10/21/CSS——浮动及清除浮动/index.html">
 <meta property="og:site_name" content="wlfsmile的博客">
-<meta property="og:description" content="浮动 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素">
+<meta property="og:description" content="浮动 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素 浮动产生bug的原因：当一个内层元素浮动时，如果没有关闭浮动，父元素就不会再包含这个浮动的内层元素了，因为此时浮动元素已经脱离了文档流，导致外层不能被撑开">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://wlfsmile.win/img/2017-10-21/float1.JPG">
 <meta property="og:image" content="http://wlfsmile.win/img/2017-10-21/float2.JPG">
-<meta property="og:updated_time" content="2017-10-22T14:28:45.211Z">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-10-21/float4.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-10-21/float3.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-10-21/float5.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-10-21/float6.JPG">
+<meta property="og:updated_time" content="2017-10-23T13:46:10.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS——浮动及清除浮动">
-<meta name="twitter:description" content="浮动 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素">
+<meta name="twitter:description" content="浮动 浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素 浮动产生bug的原因：当一个内层元素浮动时，如果没有关闭浮动，父元素就不会再包含这个浮动的内层元素了，因为此时浮动元素已经脱离了文档流，导致外层不能被撑开">
 <meta name="twitter:image" content="http://wlfsmile.win/img/2017-10-21/float1.JPG">
 
 
@@ -374,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  184
+                  518
                 </span>
               
 
@@ -400,8 +404,11 @@
 
       
         <h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><ul>
-<li>浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素<a id="more"></a>
-<h5 id="浮动和绝对定位的区别"><a href="#浮动和绝对定位的区别" class="headerlink" title="浮动和绝对定位的区别"></a>浮动和绝对定位的区别</h5></li>
+<li>浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素</li>
+<li>浮动产生bug的原因：当一个内层元素浮动时，如果没有<strong>关闭浮动</strong>，父元素就不会再包含这个浮动的内层元素了，因为此时<strong>浮动元素已经脱离了文档流</strong>，导致外层不能被撑开<a id="more"></a>
+</li>
+</ul>
+<h5 id="浮动和绝对定位的区别"><a href="#浮动和绝对定位的区别" class="headerlink" title="浮动和绝对定位的区别"></a>浮动和绝对定位的区别</h5><ul>
 <li>如下代码：   </li>
 </ul>
 <p>html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;box&quot;&gt;</div><div class="line">    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">    &lt;div class=&quot;right&quot;&gt;</div><div class="line">        我只是想测试一下哈哈哈哈哈哈哈哈哈</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
@@ -409,17 +416,32 @@
 <ul>
 <li>效果  </li>
 </ul>
-<p>绝对定位</p>
-<p><img src="/img/2017-10-21/float1.JPG" align="center"></p>
-<p>浮动</p>
-<p><img src="/img/2017-10-21/float2.JPG" align="center"></p>
+<p>绝对定位<br><img src="/img/2017-10-21/float1.JPG" align="center"></p>
+<p>浮动<br><img src="/img/2017-10-21/float2.JPG" align="center"></p>
 <ul>
 <li>绝对定位：完全脱离文本流，并且相对于其包含块定位，之后的元素会彻底占据之前元素位置，文本也会</li>
 <li>浮动：文本环绕浮动元素</li>
 </ul>
-<h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><h5 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h5><ul>
-<li>在其父元素设置{overflow:hidden}</li>
+<h4 id="浮动的影响"><a href="#浮动的影响" class="headerlink" title="浮动的影响"></a>浮动的影响</h4><ul>
+<li><p>背景不能显示，边框不能撑开，margin、padding不能正确显示，如下代码<br><img src="/img/2017-10-21/float4.JPG" align="center"></p>
+</li>
+<li><p>效果展示<br><img src="/img/2017-10-21/float3.JPG" align="center"></p>
+</li>
 </ul>
+<p>从上面效果可以看出，父级元素的背景颜色未被显示，并且父级元素高度塌陷（父元素不写高度时，子元素写了浮动后，父元素会发生高度塌陷），box的高度为0</p>
+<h4 id="清除浮动（使用较多的方法）"><a href="#清除浮动（使用较多的方法）" class="headerlink" title="清除浮动（使用较多的方法）"></a>清除浮动（使用较多的方法）</h4><h5 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h5><ul>
+<li>在其父元素设置{overflow:hidden}，就是在以上代码的box元素上加上这一行代码</li>
+<li>原理：因为这个属性相当于是让父级紧贴内容，即可紧贴其对象内内容<h5 id="clear-both"><a href="#clear-both" class="headerlink" title="clear:both"></a>clear:both</h5></li>
+<li>在浮动元素下方添加空div,并给该元素写css样式{clear:both;}<ul>
+<li>问题：增加了HTML和CSS代码量<h5 id="父级元素也浮动"><a href="#父级元素也浮动" class="headerlink" title="父级元素也浮动"></a>父级元素也浮动</h5></li>
+</ul>
+</li>
+<li>让浮动元素的父级元素也浮动</li>
+<li>问题：每个元素都得浮动，容易出问题<h5 id="伪类清除方法（主流）"><a href="#伪类清除方法（主流）" class="headerlink" title="伪类清除方法（主流）"></a>伪类清除方法（主流）</h5></li>
+<li>将父级div（clearfix）定义如下代码<br><img src="/img/2017-10-21/float5.JPG" align="center"></li>
+<li>原理： 利用伪类在元素内插入两个元素块</li>
+</ul>
+<h5 id="清除浮动后的效果"><a href="#清除浮动后的效果" class="headerlink" title="清除浮动后的效果"></a>清除浮动后的效果</h5><p><img src="/img/2017-10-21/float6.JPG" align="center"></p>
 
       
     </div>
@@ -688,7 +710,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#浮动"><span class="nav-number">1.</span> <span class="nav-text">浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#浮动和绝对定位的区别"><span class="nav-number">1.1.</span> <span class="nav-text">浮动和绝对定位的区别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除浮动"><span class="nav-number">2.</span> <span class="nav-text">清除浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#overflow"><span class="nav-number">2.1.</span> <span class="nav-text">overflow</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#浮动"><span class="nav-number">1.</span> <span class="nav-text">浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#浮动和绝对定位的区别"><span class="nav-number">1.1.</span> <span class="nav-text">浮动和绝对定位的区别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮动的影响"><span class="nav-number">2.</span> <span class="nav-text">浮动的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除浮动（使用较多的方法）"><span class="nav-number">3.</span> <span class="nav-text">清除浮动（使用较多的方法）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#overflow"><span class="nav-number">3.1.</span> <span class="nav-text">overflow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#clear-both"><span class="nav-number">3.2.</span> <span class="nav-text">clear:both</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#父级元素也浮动"><span class="nav-number">3.3.</span> <span class="nav-text">父级元素也浮动</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#伪类清除方法（主流）"><span class="nav-number">3.4.</span> <span class="nav-text">伪类清除方法（主流）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#清除浮动后的效果"><span class="nav-number">3.5.</span> <span class="nav-text">清除浮动后的效果</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -746,7 +768,7 @@
 <div class="theme-info">
   <div class="powered-by"></div>
   <span class="post-meta-divider">|</span>
-  <span class="post-count">博客全站共14.6k字</span>
+  <span class="post-count">博客全站共15.0k字</span>
 </div>
         
 
