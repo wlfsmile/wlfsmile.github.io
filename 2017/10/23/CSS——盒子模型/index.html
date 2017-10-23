@@ -84,7 +84,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="CSS,盒子模型," />
 
 
 
@@ -102,21 +102,21 @@
 
 
 
-<meta name="description" content="最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。">
-<meta name="keywords" content="hexo">
+<meta name="description" content="个人理解 对于任何元素，都是一个盒子模型  标准盒子模型">
+<meta name="keywords" content="CSS,盒子模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo博客分支教训">
-<meta property="og:url" content="http://wlfsmile.win/2017/08/16/hexo博客分支教训/index.html">
+<meta property="og:title" content="CSS——盒子模型">
+<meta property="og:url" content="http://wlfsmile.win/2017/10/23/CSS——盒子模型/index.html">
 <meta property="og:site_name" content="wlfsmile的博客">
-<meta property="og:description" content="最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。">
+<meta property="og:description" content="个人理解 对于任何元素，都是一个盒子模型  标准盒子模型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://wlfsmile.win/img/2017-8-16/1.png">
-<meta property="og:image" content="http://wlfsmile.win/img/2017-8-16/2.JPG">
-<meta property="og:updated_time" content="2017-10-21T14:27:48.160Z">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-10-23/box1.JPG">
+<meta property="og:image" content="http://wlfsmile.win/img/2017-10-23/box2.JPG">
+<meta property="og:updated_time" content="2017-10-23T14:26:23.526Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo博客分支教训">
-<meta name="twitter:description" content="最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。">
-<meta name="twitter:image" content="http://wlfsmile.win/img/2017-8-16/1.png">
+<meta name="twitter:title" content="CSS——盒子模型">
+<meta name="twitter:description" content="个人理解 对于任何元素，都是一个盒子模型  标准盒子模型">
+<meta name="twitter:image" content="http://wlfsmile.win/img/2017-10-23/box1.JPG">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="http://wlfsmile.win/2017/08/16/hexo博客分支教训/"/>
+  <link rel="canonical" href="http://wlfsmile.win/2017/10/23/CSS——盒子模型/"/>
 
 
 
 
 
-  <title>hexo博客分支教训 | wlfsmile的博客</title>
+  <title>CSS——盒子模型 | wlfsmile的博客</title>
   
 
 
@@ -291,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/08/16/hexo博客分支教训/">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/10/23/CSS——盒子模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="wlfsmile">
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo博客分支教训</h1>
+          <h1 class="post-title" itemprop="name headline">CSS——盒子模型</h1>
         
 
         <div class="post-meta">
@@ -320,8 +320,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-16T13:17:43+08:00">
-                2017-08-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-23T21:48:15+08:00">
+                2017-10-23
               </time>
             
 
@@ -343,8 +343,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
+                  <a href="/categories/面试准备/" itemprop="url" rel="index">
+                    <span itemprop="name">面试准备</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试准备/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
                   </a>
                 </span>
 
@@ -374,7 +385,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  622
+                  588
                 </span>
               
 
@@ -399,30 +410,53 @@
       
 
       
-        <p><img src="/img/2017-8-16/1.png" align="center"></p>
-<p>最近在写博客的时候突然想把自己的hexo分支完善一下，可是却不小心踩了坑。弄了好几个小时才弄好。最大的原因还是自己对分支管理掌握不够，搞的自己出现问题的时候狼狈不堪。<br><a id="more"></a><br>如果想要进行hexo博客分支备份，推荐<a href="http://www.jianshu.com/p/57b5a384f234" target="_blank" rel="external">Hexo博客备份</a></p>
-<h4 id="先说一下事情起因过程"><a href="#先说一下事情起因过程" class="headerlink" title="先说一下事情起因过程"></a>先说一下事情起因过程</h4><ul>
-<li>我发现当我切换到hexo分支时，本地的目录是master分支里面的东西，而我切换到master分支时，本地目录是hexo分支里面的东西（可能是我记错了，也可能是我一时疏忽大意，没管那么多，没仔细看）</li>
-<li>一不小心把master分支里面的东西传到了hexo分支</li>
-<li>然后把本地分支删除了</li>
-<li>后来索性把远程分支一起删了（就是这样，本地的东西也没了，还好我把博客的md文章全部备份了，不然哭死）</li>
-<li>发现仓库不能用了<br>后来我才知道，进行单独的分支管理，最好本地是有一个单独分支文件夹（反正我是喜欢这样）</li>
+        <h4 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h4><ul>
+<li>对于任何元素，都是一个盒子模型</li>
 </ul>
-<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><ul>
-<li>再创建一个hexo分支，将hexo设为默认分支</li>
-<li>把之前的博客文件夹弃用</li>
-<li>将github的东西克隆下来（会有博客的基本结构）<br><img src="/img/2017-8-16/2.JPG" align="center"></li>
-<li>将之前保留的_config.yml，themes/，source/，scaffolds/，package.json，.gitignore复制过来</li>
-<li>执行<code>npm install</code>和<code>npm install hexo-deployer-git</code>（重要 在hexo分支）（一开始我没执行<code>hexo-deployer-git</code>，然后执行<code>hexo d</code> 的时候就会有<code>ERROR Deployer not found: git</code> 的错误）</li>
-<li>执行<code>git add</code> .、<code>git commit -m &quot;&quot;</code>、<code>git push origin hexo</code>来提交hexo网站源文件</li>
-<li>依次执行<code>hexo g</code>和<code>hexo d</code>生成静态网页部署至Github上</li>
+<h4 id="标准盒子模型"><a href="#标准盒子模型" class="headerlink" title="标准盒子模型"></a>标准盒子模型</h4><p><img src="/img/2017-10-23/box1.JPG" align="center"><br><a id="more"></a><br><strong>element即content</strong></p>
+<h4 id="IE盒子模型"><a href="#IE盒子模型" class="headerlink" title="IE盒子模型"></a>IE盒子模型</h4><p><img src="/img/2017-10-23/box2.JPG" align="center"></p>
+<ul>
+<li>从上面可以看到，标准盒子模型和IE盒子模型都包含了content、padding、margin、border四个部分组成，不过相对于标准盒子模型，IE盒子模型的content包含了border和padding</li>
 </ul>
-<p>这样一来，你的博客仓库就有master分支和hexo分支，分别保存静态网页和源文件。</p>
-<h4 id="以后进行修改添加"><a href="#以后进行修改添加" class="headerlink" title="以后进行修改添加"></a>以后进行修改添加</h4><ul>
-<li>执行<code>git add</code> .、<code>git commit -m &quot;&quot;</code>、<code>git push origin hexo</code>来提交hexo网站源文件</li>
-<li>依次执行<code>hexo g</code>和<code>hexo d</code>生成静态网页部署至Github上</li>
+<h4 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h4><ul>
+<li>代码顶部都要加doctype声明，这样大多数浏览器都会遵循标准w3c盒子模型<blockquote>
+<p>IE5.x和6在怪异模式中使用自己的非标准模型，这些浏览器的width属性不是内容的宽度，而是内容、内边距、外边距的总格。  </p>
+</blockquote>
+</li>
 </ul>
-<h4 id="结尾语"><a href="#结尾语" class="headerlink" title="结尾语"></a>结尾语</h4><p>以后尽量不手痒，到处乱改。这次过程其实还是挺艰难的，因为自己脑子太乱了，所以做的时候半天抓不到思绪。所以其实耗费了很多时间，也是对自己的一个小考验。希望这次之后，自己能更加坦然去面对bug，也让自己更加独立思考和行动。</p>
+<blockquote>
+<p>虽然有方法解决这个问题。但是目前最好的解决方案是回避这个问题。也就是，不要给元素添加具有指定宽度的内边距，而是尝试将内边距或外边距添加到元素的父元素和子元素。</p>
+</blockquote>
+<h4 id="box-sizing属性介绍"><a href="#box-sizing属性介绍" class="headerlink" title="box-sizing属性介绍"></a>box-sizing属性介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">box-sizing:content-box|border-box|inherit</div></pre></td></tr></table></figure>
+<ul>
+<li>content-box:默认值。可使设置的宽度和高度应用戴元素的内容框，盒子的width只包含内容<ul>
+<li>总宽度=margin+border+padding+width</li>
+</ul>
+</li>
+<li>border-box:设置的width是除了margin外的border+padding+content的总宽度，盒子的width包含border+padding+内容<ul>
+<li>总宽度=margin+width</li>
+</ul>
+</li>
+<li>inherit：继承父元素的box-sizing属性值</li>
+</ul>
+<h4 id="实际问题介绍"><a href="#实际问题介绍" class="headerlink" title="实际问题介绍"></a>实际问题介绍</h4><h5 id="margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）"><a href="#margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）" class="headerlink" title="margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）"></a>margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）</h5><ul>
+<li>当父元素没有边框border时，设置第一个子元素的margin-top值的时候，会出现margin-top值加在父元素上的现象</li>
+<li>解决方法有四个<ul>
+<li>给父元素加边框（副作用）</li>
+<li>给父元素设定padding（副作用）</li>
+<li>给父元素设定overflow:hidden（副作用）</li>
+<li>父元素加前置内容生成  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.parent : before &#123;</div><div class="line">    content : &quot; &quot;;</div><div class="line">    display : table;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="css-外边距合并（叠加）"><a href="#css-外边距合并（叠加）" class="headerlink" title="css 外边距合并（叠加）"></a>css 外边距合并（叠加）</h5><blockquote>
+<p>两个上下方向相邻的元素框垂直相遇时，外边距会合并，合并后的外边距的高度等于两个发生合并的外边距中较高的那个边距值  </p>
+<ul>
+<li>注意： 只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。</li>
+<li>方法：连个相邻元素最好只用margin：top/bottom</li>
+</ul>
+</blockquote>
 
       
     </div>
@@ -440,7 +474,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" <i class="fa fa-tag"></i> hexo</a>
+            <a href="/tags/CSS/" <i class="fa fa-tag"></i> CSS</a>
+          
+            <a href="/tags/盒子模型/" <i class="fa fa-tag"></i> 盒子模型</a>
           
         </div>
       
@@ -453,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/15/express-session介绍/" rel="next" title="express-session介绍">
-                <i class="fa fa-chevron-left"></i> express-session介绍
+              <a href="/2017/10/21/CSS——浮动及清除浮动/" rel="next" title="CSS——浮动及清除浮动">
+                <i class="fa fa-chevron-left"></i> CSS——浮动及清除浮动
               </a>
             
           </div>
@@ -462,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/17/Express-MongoDB实现简易登录注册/" rel="prev" title="Express+MongoDB实现简易登录注册">
-                Express+MongoDB实现简易登录注册 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -693,7 +725,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#先说一下事情起因过程"><span class="nav-number">1.</span> <span class="nav-text">先说一下事情起因过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决过程"><span class="nav-number">2.</span> <span class="nav-text">解决过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#以后进行修改添加"><span class="nav-number">3.</span> <span class="nav-text">以后进行修改添加</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结尾语"><span class="nav-number">4.</span> <span class="nav-text">结尾语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#个人理解"><span class="nav-number">1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标准盒子模型"><span class="nav-number">2.</span> <span class="nav-text">标准盒子模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IE盒子模型"><span class="nav-number">3.</span> <span class="nav-text">IE盒子模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器兼容"><span class="nav-number">4.</span> <span class="nav-text">浏览器兼容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#box-sizing属性介绍"><span class="nav-number">5.</span> <span class="nav-text">box-sizing属性介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际问题介绍"><span class="nav-number">6.</span> <span class="nav-text">实际问题介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）"><span class="nav-number">6.1.</span> <span class="nav-text">margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#css-外边距合并（叠加）"><span class="nav-number">6.2.</span> <span class="nav-text">css 外边距合并（叠加）</span></a></li></ol></li></ol></div>
             
 
           </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-10-23T13:46:10.536Z</updated>
+  <updated>2017-10-23T14:26:23.526Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -16,11 +16,87 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>CSS——盒子模型</title>
+    <link href="http://wlfsmile.win/2017/10/23/CSS%E2%80%94%E2%80%94%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://wlfsmile.win/2017/10/23/CSS——盒子模型/</id>
+    <published>2017-10-23T13:48:15.000Z</published>
+    <updated>2017-10-23T14:26:23.526Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h4><ul>
+<li>对于任何元素，都是一个盒子模型</li>
+</ul>
+<h4 id="标准盒子模型"><a href="#标准盒子模型" class="headerlink" title="标准盒子模型"></a>标准盒子模型</h4><p><img src="/img/2017-10-23/box1.JPG" align="center"><br><a id="more"></a><br><strong>element即content</strong></p>
+<h4 id="IE盒子模型"><a href="#IE盒子模型" class="headerlink" title="IE盒子模型"></a>IE盒子模型</h4><p><img src="/img/2017-10-23/box2.JPG" align="center"></p>
+<ul>
+<li>从上面可以看到，标准盒子模型和IE盒子模型都包含了content、padding、margin、border四个部分组成，不过相对于标准盒子模型，IE盒子模型的content包含了border和padding</li>
+</ul>
+<h4 id="浏览器兼容"><a href="#浏览器兼容" class="headerlink" title="浏览器兼容"></a>浏览器兼容</h4><ul>
+<li>代码顶部都要加doctype声明，这样大多数浏览器都会遵循标准w3c盒子模型<blockquote>
+<p>IE5.x和6在怪异模式中使用自己的非标准模型，这些浏览器的width属性不是内容的宽度，而是内容、内边距、外边距的总格。  </p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>虽然有方法解决这个问题。但是目前最好的解决方案是回避这个问题。也就是，不要给元素添加具有指定宽度的内边距，而是尝试将内边距或外边距添加到元素的父元素和子元素。</p>
+</blockquote>
+<h4 id="box-sizing属性介绍"><a href="#box-sizing属性介绍" class="headerlink" title="box-sizing属性介绍"></a>box-sizing属性介绍</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">box-sizing:content-box|border-box|inherit</div></pre></td></tr></table></figure>
+<ul>
+<li>content-box:默认值。可使设置的宽度和高度应用戴元素的内容框，盒子的width只包含内容<ul>
+<li>总宽度=margin+border+padding+width</li>
+</ul>
+</li>
+<li>border-box:设置的width是除了margin外的border+padding+content的总宽度，盒子的width包含border+padding+内容<ul>
+<li>总宽度=margin+width</li>
+</ul>
+</li>
+<li>inherit：继承父元素的box-sizing属性值</li>
+</ul>
+<h4 id="实际问题介绍"><a href="#实际问题介绍" class="headerlink" title="实际问题介绍"></a>实际问题介绍</h4><h5 id="margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）"><a href="#margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）" class="headerlink" title="margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）"></a>margin越界（第一个子元素的margin-top和最后一个子元素的margin-bottom的越界问题）</h5><ul>
+<li>当父元素没有边框border时，设置第一个子元素的margin-top值的时候，会出现margin-top值加在父元素上的现象</li>
+<li>解决方法有四个<ul>
+<li>给父元素加边框（副作用）</li>
+<li>给父元素设定padding（副作用）</li>
+<li>给父元素设定overflow:hidden（副作用）</li>
+<li>父元素加前置内容生成  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.parent : before &#123;</div><div class="line">    content : &quot; &quot;;</div><div class="line">    display : table;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="css-外边距合并（叠加）"><a href="#css-外边距合并（叠加）" class="headerlink" title="css 外边距合并（叠加）"></a>css 外边距合并（叠加）</h5><blockquote>
+<p>两个上下方向相邻的元素框垂直相遇时，外边距会合并，合并后的外边距的高度等于两个发生合并的外边距中较高的那个边距值  </p>
+<ul>
+<li>注意： 只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。</li>
+<li>方法：连个相邻元素最好只用margin：top/bottom</li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;个人理解&quot;&gt;&lt;a href=&quot;#个人理解&quot; class=&quot;headerlink&quot; title=&quot;个人理解&quot;&gt;&lt;/a&gt;个人理解&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;对于任何元素，都是一个盒子模型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;标准盒子模型&quot;&gt;&lt;a href=&quot;#标准盒子模型&quot; class=&quot;headerlink&quot; title=&quot;标准盒子模型&quot;&gt;&lt;/a&gt;标准盒子模型&lt;/h4&gt;&lt;p&gt;&lt;img src=&quot;/img/2017-10-23/box1.JPG&quot; align=&quot;center&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="面试准备" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
+    
+      <category term="CSS" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://wlfsmile.win/tags/CSS/"/>
+    
+      <category term="盒子模型" scheme="http://wlfsmile.win/tags/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>CSS——浮动及清除浮动</title>
     <link href="http://wlfsmile.win/2017/10/21/CSS%E2%80%94%E2%80%94%E6%B5%AE%E5%8A%A8%E5%8F%8A%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8/"/>
     <id>http://wlfsmile.win/2017/10/21/CSS——浮动及清除浮动/</id>
     <published>2017-10-21T14:49:07.000Z</published>
-    <updated>2017-10-23T13:46:10.536Z</updated>
+    <updated>2017-10-23T14:26:33.209Z</updated>
     
     <content type="html"><![CDATA[<h4 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h4><ul>
 <li>浮动目的：最初是为了其他内容（如文本）“围绕”该图像，后来CSS允许浮动任何元素</li>
@@ -71,7 +147,9 @@
     
     </summary>
     
-      <category term="CSS" scheme="http://wlfsmile.win/categories/CSS/"/>
+      <category term="面试准备" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
+    
+      <category term="CSS" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/CSS/"/>
     
     
       <category term="CSS" scheme="http://wlfsmile.win/tags/CSS/"/>
