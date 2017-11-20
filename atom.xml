@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-10-23T14:26:23.526Z</updated>
+  <updated>2017-11-20T05:27:29.663Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -14,6 +14,75 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>变量及其作用域</title>
+    <link href="http://wlfsmile.win/2017/11/20/%E5%8F%98%E9%87%8F%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    <id>http://wlfsmile.win/2017/11/20/变量及其作用域/</id>
+    <published>2017-11-20T05:23:03.000Z</published>
+    <updated>2017-11-20T05:27:29.663Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>变量是存储信息的容器，JS变量可用来保存任何值</p>
+</blockquote>
+<h4 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h4><ul>
+<li>JavaScript是一种无类型、弱检测的语言，对变量的定义不需要声明变量类型，只需要赋值即可。<a id="more"></a>
+</li>
+</ul>
+<h4 id="变量的声明"><a href="#变量的声明" class="headerlink" title="变量的声明"></a>变量的声明</h4><ul>
+<li>隐式和显式声明</li>
+<li>隐式为全局，显式为局部变量。隐式执行不会报错，访问它会报错。</li>
+</ul>
+<h4 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h4><h5 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h5><ul>
+<li>所有在函数外面声明的变量都处于全局作用域中</li>
+<li>如果一个变量第一次初始化/声明的时候没有使用var关键字，那么他自动加入到全局作用域中</li>
+<li>setTimeout中的函数是在全局作用域中执行的<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var Value1 = 200;</div><div class="line">var Value2 = 20;</div><div class="line">var myObj = &#123;</div><div class="line">Value1 : 10,</div><div class="line">Value2 : 1,</div><div class="line"></div><div class="line">caleculatedIt: function()&#123;</div><div class="line">    setTimeout(function()&#123;</div><div class="line">    console.log(this.Value1 * this.Value2);</div><div class="line">    &#125;, 1000);</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">myObj.caleculatedIt(); //4000</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="局部变量（处于函数级别的作用域）"><a href="#局部变量（处于函数级别的作用域）" class="headerlink" title="局部变量（处于函数级别的作用域）"></a>局部变量（处于函数级别的作用域）</h5><ul>
+<li>没有块级作用域</li>
+<li>在一个函数内定义的变量只能在函数内部访问，或者这个函数内部的函数访问。（闭包除外）</li>
+<li>局部变量的优先级大于全局变量<ul>
+<li>如果在全局作用域中什么的变量在局部作用域中再次声明，那么在局部作用域中调用这个变量时，优先调用局部作用域中声明的变量</li>
+</ul>
+</li>
+</ul>
+<h4 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h4><ul>
+<li><p>所以的变量声明都会提升到函数的开头（如果这个变量在这个函数里面）或者全局作用域的开头（如果这个变量是一个全局变量）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function showName () &#123;</div><div class="line">    console.log (&quot;First Name: &quot; + name);</div><div class="line">    var name = &quot;Ford&quot;;</div><div class="line">    console.log (&quot;Last Name: &quot; + name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">showName (); </div><div class="line">// First Name: undefined</div><div class="line">// Last Name: Ford</div></pre></td></tr></table></figure>
+</li>
+<li><p>函数声明会覆盖变量声明（若变量声明并未赋值）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var myName;</div><div class="line">function myName () &#123;</div><div class="line">    console.log (&quot;Rich&quot;);</div><div class="line">&#125;</div><div class="line">console.log(typeof myName); // function</div></pre></td></tr></table></figure>
+</li>
+<li><p>在严格模式下，如果没有先声明变量就给变量赋值将会报错</p>
+</li>
+</ul>
+<h4 id="基本类型和引用类型"><a href="#基本类型和引用类型" class="headerlink" title="基本类型和引用类型"></a>基本类型和引用类型</h4><h5 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h5><ul>
+<li>指简单的数据段。number、string、boolean、null、undefined</li>
+<li>按值访问，可以直接操作保存在变量中的实际值</li>
+</ul>
+<h5 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h5><ul>
+<li>指对象类型。比如Object、array、function、Data等</li>
+<li>引用数据类型是保存在堆内存中的对象</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;变量是存储信息的容器，JS变量可用来保存任何值&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&quot;变量类型&quot;&gt;&lt;a href=&quot;#变量类型&quot; class=&quot;headerlink&quot; title=&quot;变量类型&quot;&gt;&lt;/a&gt;变量类型&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;JavaScript是一种无类型、弱检测的语言，对变量的定义不需要声明变量类型，只需要赋值即可。
+    
+    </summary>
+    
+    
+      <category term="面试准备" scheme="http://wlfsmile.win/tags/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
+    
+      <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS——盒子模型</title>
