@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-11-20T05:27:29.663Z</updated>
+  <updated>2017-11-21T11:38:37.294Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -14,6 +14,113 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>react+express+mongodb搭建个人博客</title>
+    <link href="http://wlfsmile.win/2017/11/21/react-express-mongodb%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://wlfsmile.win/2017/11/21/react-express-mongodb搭建个人博客/</id>
+    <published>2017-11-21T11:34:43.000Z</published>
+    <updated>2017-11-21T11:38:37.294Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是本人用React+Express+mongodb搭建的一个简易博客系统，包括前端展示和后台管理界面。查看源码欢迎访问<a href="https://github.com/wlfsmile/myBlog" target="_blank" rel="external">我的github</a></p>
+<a id="more"></a>
+<p>以下是参考我的源码后的操作</p>
+<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><h4 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h4><ul>
+<li>基础：HTML+CSS+JS+JQuery（使用的ajax交互，后期会考虑用fetch）</li>
+<li>框架：React+React-Router</li>
+<li>语法：ES6</li>
+<li>构建工具：Webpack<h4 id="后台"><a href="#后台" class="headerlink" title="后台"></a>后台</h4></li>
+<li>Node+Express搭建<h4 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h4></li>
+<li>MongoDB数据库</li>
+</ul>
+<h3 id="项目运行"><a href="#项目运行" class="headerlink" title="项目运行"></a>项目运行</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><ul>
+<li>安装好node环境</li>
+<li>安装好mongodb</li>
+<li>可安装一个mongodb可视化工具（Robo 3T）</li>
+<li><p>把仓库克隆到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone git@github.com:wlfsmile/myBlog.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装配置环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd myBlog</div><div class="line">npm i或者(cnpm,下同)</div></pre></td></tr></table></figure>
+</li>
+<li><p>全局安装webpack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i -g webpack</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装nodemon，让node自动重启</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g nodemon</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><ul>
+<li>操作mongodb<ul>
+<li>新建一个database，命名为blog</li>
+<li>（可选）新建两个collection，为articles和comments，可自己先录入数据，也可以直接到后台管理界面去输入存入数据</li>
+</ul>
+</li>
+<li><p>运行mongodb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod --dbpath d:/mongodb/data(这是你mongodb的安装路径，我是装在d盘根目录下，所以路径为这个)</div></pre></td></tr></table></figure>
+</li>
+<li><p>webpack编译打包,使用–watch可以让webpack自动重新构建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">webpack --watch</div></pre></td></tr></table></figure>
+</li>
+<li><p>运行服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nodemon app.js</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><p>在浏览器的url栏中访问<code>localhost:8000</code>即可</p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://github.com/wlfsmile/myBlog/blob/master/images/tree.png" alt="目录结构"></p>
+<!-- <img src="https://github.com/wlfsmile/myBlog/blob/master/images/tree.png" align="center" /> -->
+<ul>
+<li>client/static: 所有静态页资源<ul>
+<li>be(fe): 后台管理(前端)展示页面 <ul>
+<li>assets：页面所有的静态资源（css/images之类）</li>
+<li>component：react组件</li>
+<li>views：后台管理（前端）react入口文件</li>
+<li>index.html：react的根页面</li>
+</ul>
+</li>
+<li>build：webpack编译构建生成的文件</li>
+<li>images：webpack生成的图片</li>
+<li>views：error文件</li>
+</ul>
+</li>
+<li>server：后台文件夹<ul>
+<li>dbbase：数据文件</li>
+<li>routes：所有路由</li>
+<li>.babelrc：es6转码使用文件</li>
+<li>app.js：node入口文件</li>
+<li>package.json：配置环境文件</li>
+<li>webpack.config.js：webpack配置文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="项目功能-持续更新"><a href="#项目功能-持续更新" class="headerlink" title="项目功能(持续更新)"></a>项目功能(持续更新)</h3><h4 id="前端展示"><a href="#前端展示" class="headerlink" title="前端展示"></a>前端展示</h4><ul>
+<li>首页</li>
+<li>博客列表页</li>
+<li>文章详情页</li>
+<li>评论</li>
+<li>about页<h4 id="后台管理"><a href="#后台管理" class="headerlink" title="后台管理"></a>后台管理</h4></li>
+<li>新建文章页（实现提交markdown格式）</li>
+<li>更新/删除文章</li>
+<li>编辑about页</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是本人用React+Express+mongodb搭建的一个简易博客系统，包括前端展示和后台管理界面。查看源码欢迎访问&lt;a href=&quot;https://github.com/wlfsmile/myBlog&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我的github&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="express" scheme="http://wlfsmile.win/tags/express/"/>
+    
+      <category term="react" scheme="http://wlfsmile.win/tags/react/"/>
+    
+      <category term="node" scheme="http://wlfsmile.win/tags/node/"/>
+    
+      <category term="mongodb" scheme="http://wlfsmile.win/tags/mongodb/"/>
+    
+  </entry>
   
   <entry>
     <title>变量及其作用域</title>
@@ -78,9 +185,9 @@
     </summary>
     
     
-      <category term="面试准备" scheme="http://wlfsmile.win/tags/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
-    
       <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
+    
+      <category term="面试准备" scheme="http://wlfsmile.win/tags/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
     
   </entry>
   
