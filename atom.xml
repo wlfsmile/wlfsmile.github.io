@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-11-30T12:48:30.062Z</updated>
+  <updated>2017-11-30T12:52:58.983Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wlfsmile.win/2017/11/30/JavaScript%E2%80%94%E2%80%94%E9%83%A8%E5%88%86ES6%E6%96%B0%E7%89%B9%E6%80%A7/"/>
     <id>http://wlfsmile.win/2017/11/30/JavaScript——部分ES6新特性/</id>
     <published>2017-11-30T12:45:32.000Z</published>
-    <updated>2017-11-30T12:48:30.062Z</updated>
+    <updated>2017-11-30T12:52:58.983Z</updated>
     
     <content type="html"><![CDATA[<p>本章主要讲了部分常用的ES6新特性，写的比较简单<br><a id="more"></a></p>
 <h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = function(m,n)&#123;</div><div class="line">    var m = m || 50;</div><div class="line">    var n = n || &apos;es&apos;;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -29,9 +29,9 @@
 <h4 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myname = &apos;wlfsmile&apos;;</div><div class="line">var yourname = &apos;youname&apos;;</div><div class="line"></div><div class="line">var name = &apos;your name is&apos;+ yourname +&apos;and my name is&apos;+ myname;</div></pre></td></tr></table></figure>
 <p>变为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var name = `your name is $&#123;yourname&#125; and my name is $&#123;myname&#125;`;</div></pre></td></tr></table></figure></p>
 <h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><ul>
-<li>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值<br>数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var [a,b,c]=[11,22,33]</div><div class="line">console.log(a,b,c)//11 22 33</div><div class="line"></div><div class="line">var [a, ,b] = [1, 2, 3, 4, 5];</div><div class="line">console.log(a); // =&gt; 1</div><div class="line">console.log(b); // =&gt; 3</div></pre></td></tr></table></figure>
-</li>
+<li>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值  </li>
 </ul>
+<p>数组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var [a,b,c]=[11,22,33]</div><div class="line">console.log(a,b,c)//11 22 33</div><div class="line"></div><div class="line">var [a, ,b] = [1, 2, 3, 4, 5];</div><div class="line">console.log(a); // =&gt; 1</div><div class="line">console.log(b); // =&gt; 3</div></pre></td></tr></table></figure></p>
 <p>对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var&#123;name,age&#125;=&#123;name:&quot;张三&quot;,age:&quot;20&quot;&#125;</div><div class="line">    console.log(name,age)//张三 20</div></pre></td></tr></table></figure></p>
 <p>解构json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var jike = &#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:&quot;23&quot;,&quot;sex&quot;:&quot;男&quot;&#125;;</div><div class="line">    var &#123;name,age,sex&#125;=jike;</div><div class="line">    console.log(name,age,sex)//tom 23 男</div><div class="line"></div><div class="line">    function cal(a,b)&#123;</div><div class="line">        var ret1 = a+b;</div><div class="line">        var ret2 = a-b;</div><div class="line">        var ret3 = a*b;</div><div class="line">        var ret4 = a/b;</div><div class="line">        return [ret1,ret2,ret3,ret4]</div><div class="line">    &#125;</div><div class="line">    var [r1,r2,r3,r4] = cal(10,5);</div><div class="line">    console.log(r1,r2,r3,r4)//15 5 50 2</div></pre></td></tr></table></figure></p>
 <h4 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h4><h5 id="let"><a href="#let" class="headerlink" title="let"></a>let</h5><ul>
@@ -66,11 +66,11 @@
 <li>在严格模式下，如果箭头函数的上层函数均为箭头函数，那么this对象将不可用</li>
 </ul>
 <h5 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h5><ul>
-<li><p>当函数体中有另外一个函数，并且该函数为箭头函数时，该箭头函数的函数体中可以直接访问父级函数的 arguments 对象。</p>
+<li>当函数体中有另外一个函数，并且该函数为箭头函数时，该箭头函数的函数体中可以直接访问父级函数的 arguments 对象。</li>
+</ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function getSum() &#123;</div><div class="line">    var example = () =&gt; &#123;</div><div class="line">        return Array</div><div class="line">            .prototype</div><div class="line">            .reduce</div><div class="line">            .call(arguments, (pre, cur) =&gt; pre + cur);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return example();</div><div class="line">&#125;</div><div class="line">getSum(1, 2, 3); // =&gt; 6</div></pre></td></tr></table></figure>
-</li>
-<li><p>由于箭头函数本身没有 arguments 对象，所以如果他的上层函数都是箭头函数的话，那么 arguments 对象将不可用。</p>
-</li>
+<ul>
+<li>由于箭头函数本身没有 arguments 对象，所以如果他的上层函数都是箭头函数的话，那么 arguments 对象将不可用。</li>
 </ul>
 <h4 id="类与继承"><a href="#类与继承" class="headerlink" title="类与继承"></a>类与继承</h4><ul>
 <li>本质为对原型链的二次包装</li>
