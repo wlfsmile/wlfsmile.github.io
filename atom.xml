@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-11-23T12:52:16.248Z</updated>
+  <updated>2017-11-30T12:48:30.062Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -16,11 +16,111 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaScript——部分ES6新特性</title>
+    <link href="http://wlfsmile.win/2017/11/30/JavaScript%E2%80%94%E2%80%94%E9%83%A8%E5%88%86ES6%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>http://wlfsmile.win/2017/11/30/JavaScript——部分ES6新特性/</id>
+    <published>2017-11-30T12:45:32.000Z</published>
+    <updated>2017-11-30T12:48:30.062Z</updated>
+    
+    <content type="html"><![CDATA[<p>本章主要讲了部分常用的ES6新特性，写的比较简单<br><a id="more"></a></p>
+<h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = function(m,n)&#123;</div><div class="line">    var m = m || 50;</div><div class="line">    var n = n || &apos;es&apos;;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>变为直接放在函数签名中，因为如果参数为0,在JavaScript中为false<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = function(m=50,n=&apos;es&apos;)&#123;</div><div class="line">    //do something</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>规范：设定了默认值的入参，应该放在没有设置默认值的参数之后</p>
+<h4 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var myname = &apos;wlfsmile&apos;;</div><div class="line">var yourname = &apos;youname&apos;;</div><div class="line"></div><div class="line">var name = &apos;your name is&apos;+ yourname +&apos;and my name is&apos;+ myname;</div></pre></td></tr></table></figure>
+<p>变为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var name = `your name is $&#123;yourname&#125; and my name is $&#123;myname&#125;`;</div></pre></td></tr></table></figure></p>
+<h4 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h4><ul>
+<li>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值<br>数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var [a,b,c]=[11,22,33]</div><div class="line">console.log(a,b,c)//11 22 33</div><div class="line"></div><div class="line">var [a, ,b] = [1, 2, 3, 4, 5];</div><div class="line">console.log(a); // =&gt; 1</div><div class="line">console.log(b); // =&gt; 3</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var&#123;name,age&#125;=&#123;name:&quot;张三&quot;,age:&quot;20&quot;&#125;</div><div class="line">    console.log(name,age)//张三 20</div></pre></td></tr></table></figure></p>
+<p>解构json<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var jike = &#123;&quot;name&quot;:&quot;tom&quot;,&quot;age&quot;:&quot;23&quot;,&quot;sex&quot;:&quot;男&quot;&#125;;</div><div class="line">    var &#123;name,age,sex&#125;=jike;</div><div class="line">    console.log(name,age,sex)//tom 23 男</div><div class="line"></div><div class="line">    function cal(a,b)&#123;</div><div class="line">        var ret1 = a+b;</div><div class="line">        var ret2 = a-b;</div><div class="line">        var ret3 = a*b;</div><div class="line">        var ret4 = a/b;</div><div class="line">        return [ret1,ret2,ret3,ret4]</div><div class="line">    &#125;</div><div class="line">    var [r1,r2,r3,r4] = cal(10,5);</div><div class="line">    console.log(r1,r2,r3,r4)//15 5 50 2</div></pre></td></tr></table></figure></p>
+<h4 id="let-和-const"><a href="#let-和-const" class="headerlink" title="let 和 const"></a>let 和 const</h4><h5 id="let"><a href="#let" class="headerlink" title="let"></a>let</h5><ul>
+<li>无变量提升</li>
+<li>有块级作用域</li>
+<li>禁止重复声明</li>
+</ul>
+<h5 id="const"><a href="#const" class="headerlink" title="const"></a>const</h5><ul>
+<li>无变量提升</li>
+<li>有块级作用域</li>
+<li>禁止重复声明</li>
+<li>禁止重复赋值</li>
+<li>必须要附初始值</li>
+</ul>
+<h4 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h4><h5 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h5><ul>
+<li>共享父级this对象</li>
+<li>共享父级arguments</li>
+<li>不能当做构造函数（因为箭头函数没有自己的this对象）</li>
+</ul>
+<h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><ul>
+<li>当箭头函数入参只有一个时可以省略入参括号</li>
+<li>当入参多余一个或没有入参时必须写括号</li>
+<li>当函数体只有一个 return 语句时可以省略函数体的花括号与 return 关键字</li>
+</ul>
+<h5 id="this"><a href="#this" class="headerlink" title="this"></a>this</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//before</div><div class="line">var obj = &#123;</div><div class="line">    arr: [1, 2, 3, 4, 5, 6],</div><div class="line">    getMaxPow2: function() &#123;</div><div class="line">        var that = this,</div><div class="line">            getMax = function() &#123;</div><div class="line">                return Math.max.apply(&#123;&#125;, that.arr);</div><div class="line">            &#125;;</div><div class="line">        </div><div class="line">        return Math.pow(getMax(), 2);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//after</div><div class="line">var obj = &#123;</div><div class="line">    arr: [1, 2, 3, 4, 5, 6],</div><div class="line">    getMaxPow2: function() &#123;</div><div class="line">        var getMax = () =&gt; &#123;</div><div class="line">            return Math.max.apply(&#123;&#125;, this.arr);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return Math.pow(getMax(), 2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在箭头函数中，函数体内部没有自己的 this，默认在其内部调用 this 的时候，会自动查找其父级上下文的 this 对象（如果父级同样是箭头函数，则会按照作用域链继续向上查找）</li>
+</ul>
+<p>注意</p>
+<ul>
+<li>有的情况函数需要自己的this，例如DOM事件绑定时候回调函数，需要使用this操作DOM，这时候只能使用传统的匿名函数</li>
+<li>在严格模式下，如果箭头函数的上层函数均为箭头函数，那么this对象将不可用</li>
+</ul>
+<h5 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h5><ul>
+<li><p>当函数体中有另外一个函数，并且该函数为箭头函数时，该箭头函数的函数体中可以直接访问父级函数的 arguments 对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">function getSum() &#123;</div><div class="line">    var example = () =&gt; &#123;</div><div class="line">        return Array</div><div class="line">            .prototype</div><div class="line">            .reduce</div><div class="line">            .call(arguments, (pre, cur) =&gt; pre + cur);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return example();</div><div class="line">&#125;</div><div class="line">getSum(1, 2, 3); // =&gt; 6</div></pre></td></tr></table></figure>
+</li>
+<li><p>由于箭头函数本身没有 arguments 对象，所以如果他的上层函数都是箭头函数的话，那么 arguments 对象将不可用。</p>
+</li>
+</ul>
+<h4 id="类与继承"><a href="#类与继承" class="headerlink" title="类与继承"></a>类与继承</h4><ul>
+<li>本质为对原型链的二次包装</li>
+<li>类没有提升</li>
+<li>不能使用字面量定义属性</li>
+<li>动态继承类的构造方法中super优先于this</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">/* 类不会被提升 */</div><div class="line">let puppy = new Animal(&apos;puppy&apos;); // =&gt; ReferenceError</div><div class="line"></div><div class="line">class Animal &#123;</div><div class="line">    constructor(name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sleep() &#123;</div><div class="line">        console.log(`The $&#123;this.name&#125; is sleeping...`);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    static type() &#123;</div><div class="line">        console.log(&apos;This is an Animal class.&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let puppy = new Animal(&apos;puppy&apos;);</div><div class="line"></div><div class="line">puppy.sleep();    // =&gt; The puppy is sleeping...</div><div class="line"></div><div class="line">/* 实例化后无法访问静态方法 */</div><div class="line">puppy.type();     // =&gt; TypeError</div><div class="line"></div><div class="line">Animal.type();    // =&gt; This is an Animal class.</div><div class="line"></div><div class="line">/* 实例化前无法访问动态方法 */</div><div class="line">Animal.sleep();   // =&gt; TypeError</div><div class="line"></div><div class="line">/* 类不能重复定义 */</div><div class="line">class Animal() &#123;&#125; // =&gt; SyntaxError</div></pre></td></tr></table></figure>
+<p>注意</p>
+<ul>
+<li>类的定义中有一个特殊的constructor()，该方法名固定，表示该类的构造函数（方法），在类的实例化过程中会被调用</li>
+<li>类中无法像对象一样使用 prop: value 或者 prop = value 的形式定义一个类的属性，我们只能在类的构造方法或其他方法中使用 this.prop = value 的形式为类添加属性。</li>
+</ul>
+<h5 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class Programmer extends Animal &#123;</div><div class="line">    constructor(name) &#123;</div><div class="line">        /* 在 super 方法之前 this 不可用 */</div><div class="line">        console.log(this); // =&gt; ReferenceError</div><div class="line">        super(name);</div><div class="line">        console.log(this); // Right!</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    program() &#123;</div><div class="line">        console.log(&quot;I&apos;m coding...&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    sleep() &#123;</div><div class="line">        console.log(&apos;Save all files.&apos;);</div><div class="line">        console.log(&apos;Get into bed.&apos;);</div><div class="line">        super.sleep();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let coder = new Programmer(&apos;coder&apos;);</div><div class="line">coder.program(); // =&gt; I&apos;m coding...</div><div class="line">coder.sleep();   // =&gt; Save all files. =&gt; Get into bed. =&gt; The coder is sleeping.</div></pre></td></tr></table></figure>
+<ul>
+<li>如果子类有构造方法，那么在子类构造方法中使用 this 对象之前必须使用 super() 方法运行父类的构造方法以对父类进行初始化。</li>
+<li>在子类方法中我们也可以使用 super 对象来调用父类上的方法。如示例代码中子类的 sleep() 方法：在这里我们重写了父类中的 sleep() 方法，添加了两条语句，并在方法末尾使用 super 对象调用了父类上的 sleep() 方法。</li>
+</ul>
+<h4 id="模块化（import和export）"><a href="#模块化（import和export）" class="headerlink" title="模块化（import和export）"></a>模块化（import和export）</h4><ul>
+<li>export暴露，import引入</li>
+<li>封闭的代码（每个模块都有自己完全独立的代码块，跟作用域类似，但是更加封闭）</li>
+<li>无限制导出导出</li>
+<li>默认严格模式下运行</li>
+</ul>
+<p>参考<a href="https://segmentfault.com/a/1190000010230939" target="_blank" rel="external">ES6 常用新特性讲解</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本章主要讲了部分常用的ES6新特性，写的比较简单&lt;br&gt;
+    
+    </summary>
+    
+      <category term="面试准备" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
+    
+      <category term="CSS" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/CSS/"/>
+    
+    
+      <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
+    
+      <category term="ES6" scheme="http://wlfsmile.win/tags/ES6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaScript——引用类型</title>
     <link href="http://wlfsmile.win/2017/11/23/JavaScript%E2%80%94%E2%80%94%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"/>
     <id>http://wlfsmile.win/2017/11/23/JavaScript——引用类型/</id>
     <published>2017-11-23T12:51:20.000Z</published>
-    <updated>2017-11-23T12:52:16.248Z</updated>
+    <updated>2017-11-30T12:46:48.503Z</updated>
     
     <content type="html"><![CDATA[<h4 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h4><h5 id="创建方法"><a href="#创建方法" class="headerlink" title="创建方法"></a>创建方法</h5><ul>
 <li>对象字面量</li>
@@ -133,9 +233,9 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
+      <category term="面试准备" scheme="http://wlfsmile.win/tags/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
     
-      <category term="面试" scheme="http://wlfsmile.win/tags/%E9%9D%A2%E8%AF%95/"/>
+      <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
     
   </entry>
   
@@ -309,9 +409,9 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
-    
       <category term="面试准备" scheme="http://wlfsmile.win/tags/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
+    
+      <category term="JavaScript" scheme="http://wlfsmile.win/tags/JavaScript/"/>
     
   </entry>
   
@@ -1472,115 +1572,6 @@
     
     
       <category term="markdown" scheme="http://wlfsmile.win/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>第二次讨论</title>
-    <link href="http://wlfsmile.win/2016/10/27/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E8%AE%A8%E8%AE%BA/"/>
-    <id>http://wlfsmile.win/2016/10/27/第二次讨论/</id>
-    <published>2016-10-27T11:38:13.000Z</published>
-    <updated>2017-08-15T12:51:49.355Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong> 这些是小组第二次讨论，主要讨论了响应式设计、布局、css性能优化、css预处理 </strong><br><a id="more"></a></p>
-<h5 id="【响应式设计】"><a href="#【响应式设计】" class="headerlink" title="【响应式设计】"></a>【响应式设计】</h5><p>集中创建页面的图片排版大小，可以智能地根据用户行为以及使用的设备环境（系统平台、屏幕尺寸、屏幕定向等）进行相对应的布局。<br>响应式布局：<br>meta标签的实用：设置布局宽度等于设备宽度，布局viewport等于度量viewport<br><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;</code></p>
-<h5 id="【【布局】】"><a href="#【【布局】】" class="headerlink" title="【【布局】】"></a>【【布局】】</h5><h5 id="【水平居中】"><a href="#【水平居中】" class="headerlink" title="【水平居中】"></a>【水平居中】</h5><p><strong> text-align和inline-block的联合使用：</strong><br>text-align属性：通过指定行框与哪个点对齐，从而设置块级元素内文本的水平对齐方式。（从而child为文本行内元素，parent为块状元素，可以通过display来设置）。  </p>
-<pre><code>.parent{text-align: center;} //父元素
-.child{display: inline-block;}//子元素  
-</code></pre><p>不过此方法兼容性比较好，IE浏览器接收。不过代码较多，同时要设置父元素和子元素。<br><strong> 使用margin：0 auto设置 </strong>  </p>
-<pre><code>.child{width:100px;margin:0 auto;}//必须要有宽度
-</code></pre><p>margin设置的是块级元素的居中。兼容性好，不过需要设置宽度。<br><strong> display：table设置 </strong></p>
-<pre><code>.child{display:table;margin:0 auto;}
-</code></pre><p>此方法只需对自身进行设置，代码简短。不过在IE6、7上，需要进行调整。<br><strong> 使用绝对定位 </strong></p>
-<pre><code>.parent{position:relative;}
-/*或者实用margin-left的负值为盒子宽度的一半也可以实现，不过这样就必须知道盒子的宽度，但兼容性好*/
-.child{position:absolute;left:50%;transform:translate(-50%);}
-</code></pre><p>transform：translate。移动transform在translation的方向和距离。简单的说，向某方向移动物体多少距离。<br>不过这个方法兼容性不好，要IE9 以上。</p>
-<h5 id="【垂直居中】"><a href="#【垂直居中】" class="headerlink" title="【垂直居中】"></a>【垂直居中】</h5><p><strong> vertical-align方法 </strong></p>
-<pre><code>/*第一种方法*/ 
-.parent{display:table-cell;vertical-align:middle;height:20px;} 
-/*第二种方法*/ 
-.parent{display:inline-block;vertical-align:middle;line-height:20px;}
-</code></pre><p>在使用vertical-align的时候，由于对齐的基线是用行高的基线作为标记，故需要设置line-height或设置display:table-cell。<br><strong> 使用绝对定位 </strong></p>
-<pre><code>.parent{position:relative;} 
-.child{positon:absolute;top:50%;transform:translate(0,-50%);}
-</code></pre><p>注意与水平居中的区别</p>
-<h5 id="【水平垂直居中】"><a href="#【水平垂直居中】" class="headerlink" title="【水平垂直居中】"></a>【水平垂直居中】</h5><p><strong> 利用vertical-align,text-align,inline-block实现 </strong></p>
-<pre><code>.parent{display:table-cell;vertical-align:middle;text-align:center;} 
-.child{display:inline-block;}
-</code></pre><p><strong> 使用绝对定位 </strong></p>
-<pre><code>.parent{position:relative;} 
-.child{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
-</code></pre><p>由上可知，绝对定位可以实现任何方式的居中，不过还要考虑兼容性问题。</p>
-<h5 id="【多列布局】"><a href="#【多列布局】" class="headerlink" title="【多列布局】"></a>【多列布局】</h5><p><strong> 左列定宽，右列自适应： </strong><br>使用float+margin  </p>
-<pre><code>.left{float:left;width:100px;}
-.right{margin-left:100px;}
-</code></pre><p>经试验，如果不用margin的话，必须设置高度。IE6会有3px的bug<br>使用table实现</p>
-<pre><code>.parent{display:table;table-layout:fixed;width:100%;} 
-.left{display:table-cell;} 
-.right{width:100px;display:table-cell;}
-</code></pre><p><strong> 两列定宽，一列自适应 </strong><br>使用margin+float<br>利用float+overflow实现</p>
-<pre><code>.left,.center{float:left:width:200px;} 
-.right{overflow:hidden;}
-</code></pre><p>利用table实现<br><strong> 两侧自适应，中间定宽（网页布局常用） </strong><br>使用margin+float </p>
-<pre><code>.left{width：100px;float:left;}
-.center{float:left;width:100%;margin-right:-200px;} 
-.right{width:100px;float:right;}
-</code></pre><p>利用table实现<br><strong> 一列不定宽，一列自适应 </strong><br>利用float+overflow实现</p>
-<pre><code>.left{float:left;background-color: red;height: 100px;}
-.right{background-color: blue;overflow: hidden;height: 100px;}
-</code></pre><p>不需要设定高度。会自适应。</p>
-<p><strong> 多列式分布 </strong></p>
-<ul>
-<li>div+float</li>
-</ul>
-<p><strong> 九宫格布局 </strong></p>
-<ul>
-<li>div+table</li>
-</ul>
-<h5 id="【css性能优化】"><a href="#【css性能优化】" class="headerlink" title="【css性能优化】"></a>【css性能优化】</h5><p><strong> 模块化：</strong><br>让代码高度重用，提高开发效率。<br>模块与模块之间尽量不要包含相同的部分，如果有，提取出来，拆分成一个独立的模块。</p>
-<p><strong> css命名：</strong><br>用英文。大小驼峰、下划线等。驼峰表示区别不同单词，下划线表示从属关系。<br>避免重复命名，自己的代码前加上属于自己的前缀。<br><strong> class的使用：多组合，少继承。 </strong></p>
-<p><strong> 上下margin处理：</strong><br>如果不确定模块的上下margin特别稳定，最好不要将它写在模块的类里，而是使用类的组合，单独为上下margin挂用于边距的原子类（如mt10、mb20）。模块最好不要混用margin-top和margin-bottom，统一使用某一个。</p>
-<p><strong> 低权重原则：</strong><br>避免滥用自选择器。当不同选择符的样式设置有冲突时，会采用权重高的选择符设置样式。选择符权重相同，为就近原则。</p>
-<p><strong> 权重原则：</strong><br>HTML标签为1（如p），class为10，id为100。css选择符保证权重尽可能低。<br>使用子选择器，会增加css选择符的权重。新添class更利于维护。</p>
-<p><strong> css sprite技术：</strong><br>将网站的多张背景图片合并到一张大图上。利用background-position属性来展示我们需要的部分,图片加载会发出HTTP请求，而使用css sprite就减少了HTTP请求次数。减轻服务器压力。只能合并背景图片。对于横向和纵向都平铺的图片，不能使用css sprite，只能或横向，或纵向。排版要尽量紧凑。<br>缺点：降低开发效率和增大维护难度，是否使用取决于网站流量。</p>
-<p><strong> css常见问题：</strong> </p>
-<ul>
-<li>编码风格：<ul>
-<li>多行式可读性强，不过会增大css文件大小，一行式可读性较差，不过利于提高开发速度，减小css文件大小。推荐一行式。</li>
-</ul>
-</li>
-<li>id和class：<br>  -同一网页，相同id只能出现一次，但是class无限制。id的权重大于class。不过原生JS提供getElementId()方法，不支持class。使用id会限制网页的扩展性。一般情况下，建议尽量使用class，少用id。</li>
-<li>css hack：<ul>
-<li>IE条件注释法（兼容性最好，增加了开发和维护成本）</li>
-<li>选择符前缀法（增强了可维护性，不过兼容性欠佳，不能用于内联样式）</li>
-<li>样式属性前缀法（集合度更高，代码更加精简，可维护性更强，但存在兼容风险，可用于内联样式）  </li>
-</ul>
-</li>
-<li>解决超链接访问后hover样式不出现的问题：<ul>
-<li>a标签四种状态的排 序问题，love hate原则 ，即l(link)ov(visited)e h(hover)a(active)te。</li>
-</ul>
-</li>
-<li>haslayout：<br> -IE浏览器的专有属性，用于css的解析引擎。很多bug都因为haslayout没有被自动触发。最好的解决方法：zoom。</li>
-<li>块级元素和行内元素：<ul>
-<li>使用display转换。</li>
-</ul>
-</li>
-<li>IE6、7不支持display：inline-block。</li>
-<li>relative、absolute和float：不要滥用。<h5 id="【css预处理】"><a href="#【css预处理】" class="headerlink" title="【css预处理】"></a>【css预处理】</h5>用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行编码工作。</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt; 这些是小组第二次讨论，主要讨论了响应式设计、布局、css性能优化、css预处理 &lt;/strong&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://wlfsmile.win/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="css" scheme="http://wlfsmile.win/tags/css/"/>
     
   </entry>
   
