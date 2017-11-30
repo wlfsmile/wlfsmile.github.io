@@ -1,7 +1,7 @@
 ---
 title: JavaScript——引用类型
 date: 2017-11-23 20:51:20
-tags: [JavaScript,面试]
+tags: [面试准备,JavaScript]
 ---
 #### Object
 ##### 创建方法
