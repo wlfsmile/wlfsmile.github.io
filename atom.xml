@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-12-05T12:28:13.577Z</updated>
+  <updated>2017-12-05T12:40:02.551Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>CSS——各种居中</title>
     <link href="http://wlfsmile.win/2017/12/05/CSS%E2%80%94%E2%80%94%E5%90%84%E7%A7%8D%E5%B1%85%E4%B8%AD/"/>
     <id>http://wlfsmile.win/2017/12/05/CSS——各种居中/</id>
-    <published>2017-12-05T12:25:46.753Z</published>
-    <updated>2017-12-05T12:28:13.577Z</updated>
+    <published>2017-12-05T12:39:26.000Z</published>
+    <updated>2017-12-05T12:40:02.551Z</updated>
     
     <content type="html"><![CDATA[<h5 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h5><h6 id="行内元素（inline）"><a href="#行内元素（inline）" class="headerlink" title="行内元素（inline）"></a>行内元素（inline）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123; //父级元素为block</div><div class="line">    text-align: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h6 id="块状元素（block）"><a href="#块状元素（block）" class="headerlink" title="块状元素（block）"></a>块状元素（block）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.child&#123;</div><div class="line">    margin: 0 auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -37,6 +37,14 @@
     
     </summary>
     
+      <category term="面试准备" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/"/>
+    
+      <category term="CSS" scheme="http://wlfsmile.win/categories/%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://wlfsmile.win/tags/CSS/"/>
+    
+      <category term="居中" scheme="http://wlfsmile.win/tags/%E5%B1%85%E4%B8%AD/"/>
     
   </entry>
   
