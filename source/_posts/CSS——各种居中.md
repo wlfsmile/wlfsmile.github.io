@@ -1,5 +1,12 @@
+---
+title: CSS——各种居中
+date: 2017-12-05 20:39:26
+tags: [CSS,居中]
+categories: [面试准备,CSS]
+---
 ##### 水平居中
 ###### 行内元素（inline）
+<!-- more -->
 ```
     .parent{ //父级元素为block
         text-align: center;
