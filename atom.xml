@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-11-30T12:52:58.983Z</updated>
+  <updated>2017-12-05T12:28:13.577Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://wlfsmile.win/2017/12/05/CSS%E2%80%94%E2%80%94%E5%90%84%E7%A7%8D%E5%B1%85%E4%B8%AD/"/>
+    <id>http://wlfsmile.win/2017/12/05/CSS——各种居中/</id>
+    <published>2017-12-05T12:25:46.753Z</published>
+    <updated>2017-12-05T12:28:13.577Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h5><h6 id="行内元素（inline）"><a href="#行内元素（inline）" class="headerlink" title="行内元素（inline）"></a>行内元素（inline）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123; //父级元素为block</div><div class="line">    text-align: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="块状元素（block）"><a href="#块状元素（block）" class="headerlink" title="块状元素（block）"></a>块状元素（block）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.child&#123;</div><div class="line">    margin: 0 auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="多块状元素"><a href="#多块状元素" class="headerlink" title="多块状元素"></a>多块状元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    text-align: center;</div><div class="line">&#125;</div><div class="line">.divs&#123;</div><div class="line">    display: inline-block;</div><div class="line">    width: 100px;</div><div class="line">    height: 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//flex布局</div><div class="line">.parent&#123;</div><div class="line">    display: flex;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div><div class="line">.divs&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 50px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h5><h6 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//单个(将inline元素的高度和line-height设为一直即可)</div><div class="line">//多个</div><div class="line">.parent&#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    dispaly: table-cell;</div><div class="line">    vertical-align: middle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//已知高度（将待居中元素设置为绝对定位，并且设置margin-top为居中元素高度一半的负值）</div><div class="line">.div&#123;</div><div class="line">    width:100px;</div><div class="line">    heght:100px;</div><div class="line">    position:absolute;</div><div class="line">    top: 50%;</div><div class="line">    margin-top: -50px;</div><div class="line">&#125;</div><div class="line">//未知高度（使用transform,垂直移动-50%）</div><div class="line">.div&#123;</div><div class="line">    width: 100pc;</div><div class="line">    top: 50%;</div><div class="line">    position: absolute;</div><div class="line">    transform: translateY(-50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h5><h6 id="已知高度和宽度-使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值"><a href="#已知高度和宽度-使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值" class="headerlink" title="已知高度和宽度(使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值)"></a>已知高度和宽度(使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.div&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    position: absolute;</div><div class="line">    top: 50%;</div><div class="line">    left: 50%;</div><div class="line">    margin-left: -50px;</div><div class="line">    margin-top: -50px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="未知高度和宽度-将设置元素绝对定位，并且设置transform的translate为X，Y轴同时移动-50-即可"><a href="#未知高度和宽度-将设置元素绝对定位，并且设置transform的translate为X，Y轴同时移动-50-即可" class="headerlink" title="未知高度和宽度(将设置元素绝对定位，并且设置transform的translate为Ｘ，Ｙ轴同时移动-50%即可)"></a>未知高度和宽度(将设置元素绝对定位，并且设置transform的translate为Ｘ，Ｙ轴同时移动-50%即可)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.div&#123;</div><div class="line">    position: absolute;</div><div class="line">    top: 50%;</div><div class="line">    left: 50%;</div><div class="line">    transform: translate(-50%,-50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    display: flex;</div><div class="line">    justify-content:center;</div><div class="line">    align-items: center;</div><div class="line">    /*父级设置高度查看效果*/</div><div class="line">    height: 300px;</div><div class="line">&#125;</div><div class="line">.div&#123;</div><div class="line">    width: 100px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h5 id=&quot;水平居中&quot;&gt;&lt;a href=&quot;#水平居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h5&gt;&lt;h6 id=&quot;行内元素（inline）&quot;&gt;&lt;a href=&quot;#行内元素（inline）&quot; class=&quot;headerlink&quot; 
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaScript——部分ES6新特性</title>
@@ -1536,42 +1561,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>markdowm语法总结</title>
-    <link href="http://wlfsmile.win/2017/01/14/markdowm%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://wlfsmile.win/2017/01/14/markdowm语法总结/</id>
-    <published>2017-01-14T06:23:59.000Z</published>
-    <updated>2017-08-15T12:51:49.349Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="对一些简单markdown的语法理解"><a href="#对一些简单markdown的语法理解" class="headerlink" title="对一些简单markdown的语法理解"></a>对一些简单markdown的语法理解</h3><p><img src="/img/markdown.jpg" alt="markdown"></p>
-<h5 id="这也是我第一次用markdown语法写的文章，还是有很多不足"><a href="#这也是我第一次用markdown语法写的文章，还是有很多不足" class="headerlink" title="这也是我第一次用markdown语法写的文章，还是有很多不足"></a>这也是我第一次用markdown语法写的文章，还是有很多不足</h5><a id="more"></a>
-<h5 id="【前提概要】"><a href="#【前提概要】" class="headerlink" title="【前提概要】"></a>【前提概要】</h5><p>对于一个markdown小白来总结这篇文章，我理解的最深刻的就是，HTML与markdown语法之间的联系。简而言之，HTML不能使用markdown的语法，但是markdown中支持在HTML中的语法使用。所有我一开始用的HTML语法来写的github的README.md文档达到了我想要的效果 ，比如\&lt; p&gt;或者\&lt; img&gt;标签，也可以用来作为markdown中的行段落和插入图片。  </p>
-<h5 id="【段落和换行】"><a href="#【段落和换行】" class="headerlink" title="【段落和换行】"></a>【段落和换行】</h5><p>要写一篇文章的话，对于段落感跟换行是必须的，可以用HTML中的\&lt; br&gt;标签进行换行， 但在markdown中，也可以用两个或两个以上的空格加回车键，就可以换好行了。  </p>
-<h5 id="【标题】"><a href="#【标题】" class="headerlink" title="【标题】"></a>【标题】</h5><p>Markdown 支持两种标题的语法，类 Setext 和类 atx 形式。<br>类 Setext 形式是用底线的形式，利用 = （最高阶标题）和 - （第二阶标题）。<br>相比于类Setext形式，我更喜欢用类atx形式，相比也比较简单，直接在标题前面加上#即可，几号标题加几个#即可（1到6个）。  </p>
-<h5 id="【区块引用-Blockquotes】"><a href="#【区块引用-Blockquotes】" class="headerlink" title="【区块引用 Blockquotes】"></a>【区块引用 Blockquotes】</h5><p>在文字开头添加“&gt;”表示区块引用（块注释）  </p>
-<h5 id="【斜体和粗体】"><a href="#【斜体和粗体】" class="headerlink" title="【斜体和粗体】"></a>【斜体和粗体】</h5><p>在需要斜体的文字两端用”*“或者”_“夹起来，而如要粗体，则用两个”*“或者”_“夹起来。  </p>
-<h5 id="【无序与有序列表】"><a href="#【无序与有序列表】" class="headerlink" title="【无序与有序列表】"></a>【无序与有序列表】</h5><p>在文字开头添加(*, +, and -)实现无序列表。但是要注意在(*, +, and -)和文字之间需要添加空格。(一个文档中最好只是用一种无序列表的表示方式)，而有序列表在使用数字后面加上句号和空格即可。  </p>
-<h5 id="【链接】"><a href="#【链接】" class="headerlink" title="【链接】"></a>【链接】</h5><p>实现链接一共有两种基本方式：内联和引用方式。<br>内联：在链接的文字外加上[],而在[]外加上(里面是链接的地址)，如：这篇文章主要来自<a href="http://www.appinn.com/markdown/" target="_blank" rel="external">markdown语法</a>。<br>引用：这篇文章主要来自[markdown语法][1]，[第二个][2]<br>[1]: <a href="http://www.appinn.com/markdown/" target="_blank" rel="external">http://www.appinn.com/markdown/</a>  “markdown”<br>[2]: <a href="http://www.appinn.com/markdown/" target="_blank" rel="external">http://www.appinn.com/markdown/</a>  “markdown”<br>其中”markdown”表示鼠标移到链接的文字上去，会显示出来的内容，如：<br>引用：这篇文章主要来自<a href="http://www.appinn.com/markdown/" title="markdown" target="_blank" rel="external">markdown语法</a>，<a href="http://www.appinn.com/markdown/" title="markdown" target="_blank" rel="external">第二个</a>  </p>
-<h5 id="【插入图片】"><a href="#【插入图片】" class="headerlink" title="【插入图片】"></a>【插入图片】</h5><p>插入图片的方式跟链接的方式类似。<br>内联方式：![alt text](/path/to/img.jpg “Title”)<br>引用方式：<br>![alt text][id]<br>[id]: /path/to/img.jpg “Title”  </p>
-<h5 id="【代码框】"><a href="#【代码框】" class="headerlink" title="【代码框】"></a>【代码框】</h5><p>有两种方式，第一种是在一些比较简单的代码中，可以直接使用` &lt; blockquote&gt;`来实现。第二种是大片文字需要实现代码框。使用Tab或四个空格。  </p>
-<h5 id="【脚注】"><a href="#【脚注】" class="headerlink" title="【脚注】"></a>【脚注】</h5><p>hello[^hello]<br>[^hello]: hi<br>效果为：<br>hello<a href="hi">^hello</a></p>
-<h5 id="【下划线】"><a href="#【下划线】" class="headerlink" title="【下划线】"></a>【下划线】</h5><p>在空白行下方添加三条“-”横线。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;对一些简单markdown的语法理解&quot;&gt;&lt;a href=&quot;#对一些简单markdown的语法理解&quot; class=&quot;headerlink&quot; title=&quot;对一些简单markdown的语法理解&quot;&gt;&lt;/a&gt;对一些简单markdown的语法理解&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;/img/markdown.jpg&quot; alt=&quot;markdown&quot;&gt;&lt;/p&gt;
-&lt;h5 id=&quot;这也是我第一次用markdown语法写的文章，还是有很多不足&quot;&gt;&lt;a href=&quot;#这也是我第一次用markdown语法写的文章，还是有很多不足&quot; class=&quot;headerlink&quot; title=&quot;这也是我第一次用markdown语法写的文章，还是有很多不足&quot;&gt;&lt;/a&gt;这也是我第一次用markdown语法写的文章，还是有很多不足&lt;/h5&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://wlfsmile.win/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="markdown" scheme="http://wlfsmile.win/tags/markdown/"/>
     
   </entry>
   

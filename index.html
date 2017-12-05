@@ -288,6 +288,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/12/05/CSS——各种居中/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="wlfsmile">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/wlf.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wlfsmile的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/05/CSS——各种居中/" itemprop="url">未命名</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T20:25:46+08:00">
+                2017-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  305
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h5 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h5><h6 id="行内元素（inline）"><a href="#行内元素（inline）" class="headerlink" title="行内元素（inline）"></a>行内元素（inline）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123; //父级元素为block</div><div class="line">    text-align: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="块状元素（block）"><a href="#块状元素（block）" class="headerlink" title="块状元素（block）"></a>块状元素（block）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.child&#123;</div><div class="line">    margin: 0 auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="多块状元素"><a href="#多块状元素" class="headerlink" title="多块状元素"></a>多块状元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    text-align: center;</div><div class="line">&#125;</div><div class="line">.divs&#123;</div><div class="line">    display: inline-block;</div><div class="line">    width: 100px;</div><div class="line">    height: 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//flex布局</div><div class="line">.parent&#123;</div><div class="line">    display: flex;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div><div class="line">.divs&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 50px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h5><h6 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//单个(将inline元素的高度和line-height设为一直即可)</div><div class="line">//多个</div><div class="line">.parent&#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    dispaly: table-cell;</div><div class="line">    vertical-align: middle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="块状元素"><a href="#块状元素" class="headerlink" title="块状元素"></a>块状元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">//已知高度（将待居中元素设置为绝对定位，并且设置margin-top为居中元素高度一半的负值）</div><div class="line">.div&#123;</div><div class="line">    width:100px;</div><div class="line">    heght:100px;</div><div class="line">    position:absolute;</div><div class="line">    top: 50%;</div><div class="line">    margin-top: -50px;</div><div class="line">&#125;</div><div class="line">//未知高度（使用transform,垂直移动-50%）</div><div class="line">.div&#123;</div><div class="line">    width: 100pc;</div><div class="line">    top: 50%;</div><div class="line">    position: absolute;</div><div class="line">    transform: translateY(-50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="水平垂直居中"><a href="#水平垂直居中" class="headerlink" title="水平垂直居中"></a>水平垂直居中</h5><h6 id="已知高度和宽度-使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值"><a href="#已知高度和宽度-使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值" class="headerlink" title="已知高度和宽度(使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值)"></a>已知高度和宽度(使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.div&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    position: absolute;</div><div class="line">    top: 50%;</div><div class="line">    left: 50%;</div><div class="line">    margin-left: -50px;</div><div class="line">    margin-top: -50px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="未知高度和宽度-将设置元素绝对定位，并且设置transform的translate为X，Y轴同时移动-50-即可"><a href="#未知高度和宽度-将设置元素绝对定位，并且设置transform的translate为X，Y轴同时移动-50-即可" class="headerlink" title="未知高度和宽度(将设置元素绝对定位，并且设置transform的translate为Ｘ，Ｙ轴同时移动-50%即可)"></a>未知高度和宽度(将设置元素绝对定位，并且设置transform的translate为Ｘ，Ｙ轴同时移动-50%即可)</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.div&#123;</div><div class="line">    position: absolute;</div><div class="line">    top: 50%;</div><div class="line">    left: 50%;</div><div class="line">    transform: translate(-50%,-50%);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h6 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    display: flex;</div><div class="line">    justify-content:center;</div><div class="line">    align-items: center;</div><div class="line">    /*父级设置高度查看效果*/</div><div class="line">    height: 300px;</div><div class="line">&#125;</div><div class="line">.div&#123;</div><div class="line">    width: 100px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/11/30/JavaScript——部分ES6新特性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1742,166 +1887,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wlfsmile.win/2017/08/15/express-session介绍/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="wlfsmile">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/wlf.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="wlfsmile的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/15/express-session介绍/" itemprop="url">express-session介绍</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-15T22:15:39+08:00">
-                2017-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node/" itemprop="url" rel="index">
-                    <span itemprop="name">Node</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  0
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1952,7 +1937,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2137,7 +2122,7 @@
 <div class="theme-info">
   <div class="powered-by"></div>
   <span class="post-meta-divider">|</span>
-  <span class="post-count">博客全站共18.7k字</span>
+  <span class="post-count">博客全站共19.0k字</span>
 </div>
         
 
