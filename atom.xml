@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wlfsmile.win/"/>
-  <updated>2017-12-05T12:40:02.551Z</updated>
+  <updated>2017-12-05T12:40:50.512Z</updated>
   <id>http://wlfsmile.win/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://wlfsmile.win/2017/12/05/CSS%E2%80%94%E2%80%94%E5%90%84%E7%A7%8D%E5%B1%85%E4%B8%AD/"/>
     <id>http://wlfsmile.win/2017/12/05/CSS——各种居中/</id>
     <published>2017-12-05T12:39:26.000Z</published>
-    <updated>2017-12-05T12:40:02.551Z</updated>
+    <updated>2017-12-05T12:40:50.512Z</updated>
     
-    <content type="html"><![CDATA[<h5 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h5><h6 id="行内元素（inline）"><a href="#行内元素（inline）" class="headerlink" title="行内元素（inline）"></a>行内元素（inline）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123; //父级元素为block</div><div class="line">    text-align: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h5 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h5><h6 id="行内元素（inline）"><a href="#行内元素（inline）" class="headerlink" title="行内元素（inline）"></a>行内元素（inline）</h6><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.parent&#123; //父级元素为block</div><div class="line">    text-align: center;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h6 id="块状元素（block）"><a href="#块状元素（block）" class="headerlink" title="块状元素（block）"></a>块状元素（block）</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.child&#123;</div><div class="line">    margin: 0 auto;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h6 id="多块状元素"><a href="#多块状元素" class="headerlink" title="多块状元素"></a>多块状元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">.parent&#123;</div><div class="line">    text-align: center;</div><div class="line">&#125;</div><div class="line">.divs&#123;</div><div class="line">    display: inline-block;</div><div class="line">    width: 100px;</div><div class="line">    height: 50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//flex布局</div><div class="line">.parent&#123;</div><div class="line">    display: flex;</div><div class="line">    justify-content: center;</div><div class="line">&#125;</div><div class="line">.divs&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 50px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h5><h6 id="行内元素"><a href="#行内元素" class="headerlink" title="行内元素"></a>行内元素</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//单个(将inline元素的高度和line-height设为一直即可)</div><div class="line">//多个</div><div class="line">.parent&#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    dispaly: table-cell;</div><div class="line">    vertical-align: middle;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -33,7 +34,7 @@
     
     <summary type="html">
     
-      &lt;h5 id=&quot;水平居中&quot;&gt;&lt;a href=&quot;#水平居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h5&gt;&lt;h6 id=&quot;行内元素（inline）&quot;&gt;&lt;a href=&quot;#行内元素（inline）&quot; class=&quot;headerlink&quot; 
+      &lt;h5 id=&quot;水平居中&quot;&gt;&lt;a href=&quot;#水平居中&quot; class=&quot;headerlink&quot; title=&quot;水平居中&quot;&gt;&lt;/a&gt;水平居中&lt;/h5&gt;&lt;h6 id=&quot;行内元素（inline）&quot;&gt;&lt;a href=&quot;#行内元素（inline）&quot; class=&quot;headerlink&quot; title=&quot;行内元素（inline）&quot;&gt;&lt;/a&gt;行内元素（inline）&lt;/h6&gt;
     
     </summary>
     
