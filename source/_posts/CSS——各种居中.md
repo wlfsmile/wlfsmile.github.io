@@ -7,19 +7,19 @@ categories: [面试准备,CSS]
 ##### 水平居中
 ###### 行内元素（inline）
 <!-- more -->
-```
+```css
     .parent{ //父级元素为block
         text-align: center;
     }
 ```
 ###### 块状元素（block）
-```
+```css
     .child{
         margin: 0 auto;
     }
 ```
 ###### 多块状元素
-```
+```css
     .parent{
         text-align: center;
     }
@@ -41,7 +41,7 @@ categories: [面试准备,CSS]
 ```
 ##### 垂直居中
 ###### 行内元素
-```
+```css
     //单个(将inline元素的高度和line-height设为一直即可)
     //多个
     .parent{
@@ -52,7 +52,7 @@ categories: [面试准备,CSS]
     }
 ```
 ###### 块状元素
-```
+```css
     //已知高度（将待居中元素设置为绝对定位，并且设置margin-top为居中元素高度一半的负值）
     .div{
         width:100px;
@@ -71,7 +71,7 @@ categories: [面试准备,CSS]
 ```
 ##### 水平垂直居中
 ###### 已知高度和宽度(使用绝对定位，将元素的margin-left和margin-top设为元素宽度和高度的一半负值)
-```
+```css
     .div{
         width: 100px;
         height: 100px;
@@ -83,7 +83,7 @@ categories: [面试准备,CSS]
     }
 ```
 ###### 未知高度和宽度(将设置元素绝对定位，并且设置transform的translate为Ｘ，Ｙ轴同时移动-50%即可)
-```
+```css
     .div{
         position: absolute;
         top: 50%;
@@ -92,7 +92,7 @@ categories: [面试准备,CSS]
     }
 ```
 ###### flex布局
-```
+```css
     .parent{
         display: flex;
         justify-content:center;
