@@ -35,7 +35,8 @@ var name = `your name is ${yourname} and my name is ${myname}`;
 ```
 
 #### 解构赋值
-+ ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值
++ ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值  
+
 数组
 ```
     var [a,b,c]=[11,22,33]
@@ -127,6 +128,7 @@ var obj = {
 
 ##### arguments
 + 当函数体中有另外一个函数，并且该函数为箭头函数时，该箭头函数的函数体中可以直接访问父级函数的 arguments 对象。
+
 ```
 function getSum() {
     var example = () => {
@@ -210,6 +212,7 @@ let coder = new Programmer('coder');
 coder.program(); // => I'm coding...
 coder.sleep();   // => Save all files. => Get into bed. => The coder is sleeping.
 ```
+
 + 如果子类有构造方法，那么在子类构造方法中使用 this 对象之前必须使用 super() 方法运行父类的构造方法以对父类进行初始化。
 + 在子类方法中我们也可以使用 super 对象来调用父类上的方法。如示例代码中子类的 sleep() 方法：在这里我们重写了父类中的 sleep() 方法，添加了两条语句，并在方法末尾使用 super 对象调用了父类上的 sleep() 方法。
 
