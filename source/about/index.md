@@ -9,6 +9,7 @@ layout: about
 - Github：https://github.com/wlfsmile
 - BLog：http://wlfsmile.win
 - 学校/专业/毕业时间：重庆邮电大学/电子商务/2019年
+
 ## 掌握技能
 - 熟悉HTML、CSS，能良好的遵从W3C标准来实现设计稿 
 - 熟悉JavaScript的基本语法，了解ES6的基本用法，能够熟练的使用jQuery 
@@ -16,6 +17,7 @@ layout: about
 - 能够熟练的使用github、coding进行协同开发
 - 能够使用AJAX等技术进行数据交互 
 - 了解React，对React技术栈有一定的学习
+
 ## 项目介绍
 - 2017.02-2017.03  极客网工作室官网    前端开发
     - 使用jQuery操作DOM，制作页面效果 页面部分使用到CSS3，为页面添加动画效果 
@@ -29,6 +31,7 @@ layout: about
     - 使用Ajax交互，并实现前端页面向后台输送数据 
     - 使用cookie将用户名、密码保存在客户端 
     - 使用Tomcat服务器进行本地开发
+    
 ## 个人评价
 - 自学前端，有较好的自控能力，对待事情态度认真 
 - 对事情积极乐观，能够很快融入群体 
