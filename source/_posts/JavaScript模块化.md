@@ -17,6 +17,7 @@ categories: [面试准备,JavaScript]
 <!-- more -->
 
 #### 模块化的实现
+
 1. ES6之前
 在ES6之前，JavaScript不支持类的概念，而刚好创建一个函数的时候，解析器会针对函数产生一个新的运行环境，函数运行完了之后就会销毁一切。从而就可以随意创建对象，达到了类似私有变量的效果，避免了父命名空间的冲突
 
@@ -89,9 +90,11 @@ categories: [面试准备,JavaScript]
 
  }(globalVariable));
 ```
-+ 在上例中，```globalVariable```是唯一一个全局变量，这种做法比完全匿名的闭包的好处是，代码结构更清晰，而且性能更好。我们能够看到函数内部传递进来了全局变量，所以依赖关系非常清晰。其次在函数内部调用 ```globalVarible``` 的时候，解释器能够直接找到局部的 ```globalVarible```，就不用上溯到外部的 ```globalVarible```.
+
++ 在上例中,`globalVariable`是唯一一个全局变量，这种做法比完全匿名的闭包的好处是，代码结构更清晰，而且性能更好。我们能够看到函数内部传递进来了全局变量，所以依赖关系非常清晰。其次在函数内部调用 `globalVarible` 的时候，解释器能够直接找到局部的 `globalVarible`，就不用上溯到外部的 `globalVarible`.
 
 ##### 对象接口
+
 ```js
 var myGradesCalculate = (function(){
 
@@ -123,6 +126,7 @@ myGradesCalculate.average(); // 'Your average grade is 71.33333333333333.'
 + 立即执行的匿名函数返回了一个对象。这样就算使用独立的对象接口
 
 ##### 把要公开的属性专门放在一个对象声明中返回
+
 ```js
 var myGradesCalculate = (function () {
     
@@ -167,7 +171,7 @@ myGradesCalculate.average(); // 'Your average grade is 71.33333333333333.'
 ##### CommonJS
 + 每个JS文件都是一个独立的模块上下文，在这个上下文中默认创建的属性都是私有的。对其他文件是不可见的。
 
-**做法：** 通过```module.exports```对象暴露对外接口。通过```require()```进行调用
+**做法：** 通过`module.exports`对象暴露对外接口。通过`require()`进行调用
 **典例：** Node.js
 
 **优势：**
@@ -187,8 +191,8 @@ define([moduleA,moduleB],function(moduleA,moduleB){
   console.log(moduleA.hello());
 });
 ```
-+ 第一个参数是一个数组，数组中有两个字符串也就是需要依赖的模块名称。AMD 会以一种**非阻塞**的方式，通过 ```appendChild``` 将这两个模块插入到 ```DOM``` 中。在两个模块都加载成功之后，define 会调用第二个参数中的回调函数，一般是函数主体。
-+ ```define``` 既是一种引用模块的方式，也是定义模块的方式
++ 第一个参数是一个数组，数组中有两个字符串也就是需要依赖的模块名称。AMD 会以一种**非阻塞**的方式，通过`appendChild`将这两个模块插入到`DOM`中。在两个模块都加载成功之后，define 会调用第二个参数中的回调函数，一般是函数主体。
++ `define`既是一种引用模块的方式，也是定义模块的方式
 
 ```js
 //moduleA
@@ -211,7 +215,7 @@ define([],function(){
 
 ##### UMD(通用模块定义规范)
 
-对于需要同时支持 ```AMD``` 和 ```CommonJS``` 的模块而言，可以使用 UMD,并且UMD指出全局变量定义，所以UMD可以同时在客户端和服务端使用
+对于需要同时支持 `AMD` 和 `CommonJS` 的模块而言，可以使用 UMD,并且UMD指出全局变量定义，所以UMD可以同时在客户端和服务端使用
 
 ```js
 (function (root, factory) {
